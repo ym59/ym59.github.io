@@ -6,11 +6,9 @@
   <title>Blog of Yash Mathur</title>
   <meta name="description" content="Blog of Yash Mathur. Thoughts on computational biology, AI, and more." />
   <link rel="icon" href="../images/YM.ico" />
-
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
   <style>
     :root{
       --bg:#0f1724;
@@ -26,7 +24,6 @@
       color-scheme:dark;
       font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
     }
-
     html.light{
       --bg:#f7fafc;
       --card:#ffffff;
@@ -36,18 +33,14 @@
       --accent-2:#2563eb;
       color-scheme:light;
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background-color:var(--bg);color:var(--muted);transition:color var(--transition-speed) ease,background-color var(--transition-speed) ease;-webkit-font-smoothing:antialiased}
+    html,body{background-color:var(--bg);color:var(--muted);transition:color var(--transition-speed) ease,background-color var(--transition-speed) ease;-webkit-font-smoothing:antialiased}
     a{color:var(--accent); text-decoration: none;} a:hover{text-decoration:underline}
     .container{max-width:var(--max-width);margin:36px auto;padding:20px}
-
-    /* Header & Base Styles */
     .site-header{display:flex;align-items:center;gap:18px;padding:18px;border-radius:var(--radius);background:linear-gradient(90deg,rgba(255,255,255,0.01),transparent);backdrop-filter:blur(6px)}
     .logo{width:96px;height:96px;border-radius:12px;overflow:hidden;flex-shrink:0;background:var(--glass);display:flex;align-items:center;justify-content:center}
     .logo img{width:86px;height:auto}
-    h1, h2, h3 { color: var(--accent-2); }
-    h1{font-size:1.4rem;margin:0}
+    h1{font-size:1.4rem;margin:0;color:var(--accent-2)}
     p.lead, .site-header p{color:var(--muted)}
     .top-nav{display:flex;gap:8px;margin-left:auto;align-items:center}
     .social-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:600;transition:all var(--transition-speed) ease}
@@ -57,40 +50,16 @@
     .site-footer{margin-top:28px;padding:24px;text-align:center;color:var(--muted);font-size:0.9rem;border-top:1px solid var(--glass)}
     .to-top{position:fixed;right:24px;bottom:28px;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(2,6,23,0.6);border:0;cursor:pointer;opacity:0;transform:translateY(12px);transition:opacity var(--transition-speed) ease,transform var(--transition-speed) ease;z-index:100}
     .to-top.is-visible{opacity:1;transform:translateY(0)}
-    body.modal-open { overflow: hidden; }
-
-    /* --- BLOG STYLES --- */
     .blog-header { text-align: center; padding: 28px 18px; margin-bottom: 24px; border-radius: var(--radius); background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(0,0,0,0.02)); }
-    .blog-header h2 { font-size: 2.2rem; margin-bottom: 8px; }
+    .blog-header h2 { font-size: 2.2rem; margin-bottom: 8px; color: var(--accent-2); }
     .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-    .blog-post-card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--glass); border-radius: var(--radius); padding: 24px; color: var(--muted); transition: transform var(--transition-speed) var(--easing), box-shadow var(--transition-speed) var(--easing); cursor: pointer; }
+    .blog-post-card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--glass); border-radius: var(--radius); padding: 24px; color: var(--muted); transition: transform var(--transition-speed) var(--easing), box-shadow var(--transition-speed) var(--easing); }
     .blog-post-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(2,6,23,0.4); }
-    .blog-post-card h3 { margin: 0 0 12px; font-size: 1.25rem; }
+    .blog-post-card h3 { margin: 0 0 12px; font-size: 1.25rem; color: var(--accent-2); }
     .blog-post-card .post-meta { font-size: 0.85rem; margin-bottom: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
     .blog-post-card .excerpt { line-height: 1.6; margin-bottom: 18px; }
-    .post-footer { margin-top: auto; }
     .tag-list { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 16px; border-top: 1px dashed rgba(255,255,255,0.05); }
     .tag { font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--glass); color: var(--accent); border: 1px solid rgba(125,211,252,0.1); }
-    .full-post-content { display: none; } /* Hide full content by default */
-
-    /* --- MODAL STYLES --- */
-    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 36, 0.85); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity var(--transition-speed) ease; }
-    .modal-overlay.is-visible { opacity: 1; pointer-events: auto; }
-    .modal-content { position: relative; background: var(--card); border-radius: var(--radius); max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 32px; border: 1px solid var(--glass); transform: scale(0.95); transition: transform var(--transition-speed) var(--easing); }
-    .modal-overlay.is-visible .modal-content { transform: scale(1); }
-    .modal-content h2 { font-size: 1.8rem; margin-bottom: 16px; color: var(--accent-2); }
-    .modal-content p { line-height: 1.7; margin-bottom: 1em; color: var(--muted); }
-    .modal-content a { font-weight: 600; }
-    .modal-close-btn { position: absolute; top: 12px; right: 12px; background: var(--glass); color: var(--muted); border: 1px solid transparent; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: all var(--transition-speed) ease; }
-    .modal-close-btn:hover { color: var(--accent); background: rgba(125, 211, 252, 0.1); border-color: rgba(125, 211, 252, 0.2); }
-  
-	.modal-content p {
-	  line-height: 1.7;
-	  margin-bottom: 1em;
-	  color: var(--muted);
-	  text-align: justify; /* Add this line */
-	}
- 
   </style>
 </head>
 <body>
@@ -113,181 +82,105 @@
             </button>
         </nav>
     </header>
-
     <main>
       <section class="blog-header">
         <h2>From the Lab & Beyond</h2>
         <p class="lead">Thoughts on computational biology, AI, software development, and other curiosities.</p>
       </section>
-      
       <div class="blog-grid">
-        
-        <div class="blog-post-card" role="button" tabindex="0">
+		<a class="blog-post-card" href="posts/visitor-number-three-3i-atlas.html">
+          <h3>Visitor Number Three-ish: A Friendly Look at 3I/ATLAS</h3>
+          <div class="post-meta"><i class="fas fa-calendar-alt fa-fw"></i> Oct 03, 2025</div>
+          <p class="excerpt">A personal, science-forward look at interstellar comet 3I/ATLAS. Why it matters, why it’s not a light show, and a tiny bit of tinfoil fun.</p>
+          <div class="tag-list">
+            <span class="tag">Interstellar</span><span class="tag">Comets</span><span class="tag">Astronomy</span><span class="tag">ALIENS!</span>
+          </div>
+        </a>
+		<a class="blog-post-card" href="posts/reading-the-sky-sentiment-tracker.html">
+          <h3>Building a Sentiment Tracker over BlueSky</h3>
+          <div class="post-meta"><i class="fas fa-calendar-alt fa-fw"></i> Sep 15, 2025</div>
+          <p class="excerpt">A sentiment analysis tracker for the lost people over at the more free version of a certain 250-character post social media outlet. BlueSky has evolved into a good alternative to that chirping bird (formerly named obvoiously).</p>
+          <div class="tag-list">
+            <span class="tag">Python</span><span class="tag">AI</span><span class="tag">WebDev</span><span class="tag">Reddit</span>
+          </div>
+        </a>
+		<a class="blog-post-card" href="posts/clinical-mental-health-classifier-with-a-dash-of-Vibe-coding.html">
+          <h3>Building a Lightweight Job Scheduler Prototype</h3>
+          <div class="post-meta"><i class="fas fa-calendar-alt fa-fw"></i> Sep 23, 2025</div>
+          <p class="excerpt">A lightweight job scheduling and status tracking prototype built with Flask, Celery, Redis, and MongoDB. Designed to quietly queue, process, and monitor tasks without overengineering. A clean backbone for bigger builds.</p>
+          <div class="tag-list">
+            <span class="tag">Python</span><span class="tag">AI</span><span class="tag">WebDev</span><span class="tag">Reddit</span>
+          </div>
+        </a>
+		<a class="blog-post-card" href="posts/clinical-mental-health-classifier-with-a-dash-of-Vibe-coding.html">
+          <h3>Clinical mental health classifier with a dash of "Vibe coding"</h3>
+          <div class="post-meta"><i class="fas fa-calendar-alt fa-fw"></i> Sep 15, 2025</div>
+          <p class="excerpt">A simply overcomplicated mental health detector. What started as a random project, turned into a full-fledged MVP Clinical Mental Health Classifier.</p>
+          <div class="tag-list">
+            <span class="tag">Python</span><span class="tag">AI</span><span class="tag">WebDev</span><span class="tag">Reddit</span>
+          </div>
+        </a>
+        <a class="blog-post-card" href="posts/my-journey-writing-a-review-on-ai-in-drug-discovery.html">
           <h3>My Journey Writing a Review on AI in Drug Discovery</h3>
           <div class="post-meta"><i class="fas fa-calendar-alt fa-fw"></i> Aug 22, 2025</div>
           <p class="excerpt">From the initial literature survey to the final submission, this post details the months-long process of writing my first review paper on AI's role in advancing drug discovery.</p>
-          <div class="post-footer">
-            <div class="tag-list">
-              <span class="tag">Research</span> <span class="tag">AI</span> <span class="tag">Writing</span> <span class="tag">Publication</span>
-            </div>
+          <div class="tag-list">
+            <span class="tag">Research</span> <span class="tag">AI</span> <span class="tag">Writing</span> <span class="tag">Publication</span>
           </div>
-          <div class="full-post-content">
-		  <h3>The Eight-Month Odyssey of a Review Paper</h3>
-			<p>It started with the kind of beautiful, naive optimism only a researcher can have: a "quick" review paper to consolidate the latest advancements in AI for drug discovery. This simple idea promptly blossomed into an eight-month intellectual odyssey. Faced with the field's enormous scope, we decided against the sensible option of narrowing our focus and instead tried to survey the vast landscape. It was an ambitious undertaking.</p>
-			<p>The initial literature search was less of a search and more of a digital tsunami. A preliminary screen for "AI" and "drug discovery" returned a jaw-dropping 20,000+ results. After a rigorous filtering process, we managed to whittle that mountain down to a more manageable list of around 500 core papers that demanded our full attention. My first line of defense against this academic deluge was organizational rigor, which is a fancy way of saying I made a very, very large Excel sheet. I classified each paper by its application and method to further filter the signal from the noise. Tools like Semantic Scholar and Elicit were lifesavers for grasping high-level summaries, while Research Rabbit was perfect for gleefully chasing citations down new and unexpected rabbit holes.</p>
-			<p>My digital toolkit was a study in contrasts. On one hand, I had the stoic reliability of EndNote for managing citations. On the other, I had my Obsidian vault, which functioned less like a knowledge base and more like a chaotic digital attic for every raw note and half-formed idea. This deep dive also surfaced a key insight about modern research. Sifting through sources from premier journals like Nature to the fast-paced world of arXiv, it became clear that excellence isn't confined to peer-reviewed publications. Many of the most brilliant and rigorous studies were on arXiv, standing tall on their own merit long before getting the official stamp of approval.</p>
-			<p>So, this post is a look back at the organized chaos: the tools that preserved my sanity, the intellectual gymnastics of connecting disparate research, and the profound satisfaction of finally creating a coherent story from it all.</p>
-          </div>
-        </div>
-
-        <div class="blog-post-card" role="button" tabindex="0">
+        </a>
+        <a class="blog-post-card" href="posts/building-the-admet-ai-module-for-instadock-v2.html">
           <h3>Building the ADMET AI Module for InstaDock v2</h3>
           <div class="post-meta"><i class="fas fa-calendar-alt fa-fw"></i> Aug 22, 2025</div>
-          <p class="excerpt">Building the ADMET AI for InstaDock v2 was a solo journey through massive datasets, complex models, and the frustrating world of academic publishing. Here's how it was done.</p>
-          <div class="post-footer">
-            <div class="tag-list">
-              <span class="tag">InstaDock</span> <span class="tag">AI</span> <span class="tag">Software Dev</span> <span class="tag">Cheminformatics</span> <span class="tag">Machine Learning</span>
-            </div>
+          <p class="excerpt">Building the ADMET AI for InstaDock v2 was a solo journey through massive datasets, complex models, and the frustrating world of academic publishing.</p>
+          <div class="tag-list">
+            <span class="tag">InstaDock</span> <span class="tag">AI</span> <span class="tag">Software Dev</span> <span class="tag">Cheminformatics</span> <span class="tag">Machine Learning</span>
           </div>
-          <div class="full-post-content">
-            <h2>From Docking to Predicting: Answering the "So What now??"</h2>
-            <p>InstaDock was great for virtual screening, but a common piece of user feedback haunted me: "This compound has a fantastic docking score, but how do I know if it's even viable?" It was a fair point. A molecule that binds perfectly but is toxic or can't be absorbed by the body is ultimately a dead end. This led me to the ambitious development of the ADMET (Absorption, Distribution, Metabolism, Excretion, and Toxicity) prediction module for v2.</p>
-            <p>This wasn't just about adding a feature; it was a deep dive into the messy reality of applied machine learning. As any data scientist will tell you, 80% of the work is just getting the data in order. I had to aggregate and meticulously clean several public datasets, leaning heavily on fantastic resources like <strong>TDCommons</strong> and <strong>DeepPK</strong> to build a foundation solid enough for model training.</p>
-            <p>I settled on a <strong>Direct Message Passing Neural Network (DMPNN)</strong> architecture, chosen for its elegant ability to learn directly from the molecular graph structure itself. My toolkit was a who's who of modern machine learning: <strong>PyTorch Lightning</strong> provided a high-level structure for my training loops, <strong>Chemprop</strong> served as a powerful baseline and framework, and I used a blend of <strong>CatBoost</strong> and <strong>scikit-learn</strong> models for ensemble training and specific endpoints. To squeeze every last drop of performance out of the models, I used <strong>Optuna</strong> for hyperparameter optimization, letting it run for days to find the perfect settings. One of the biggest hurdles was dealing with severely imbalanced datasets, especially for toxicity prediction, where positive examples are thankfully rare in the real world but a nightmare for a naive algorithm.</p>
-            <h2>Performance is a Feature: Building an Inference Engine for a GUI</h2>
-            <p>Building a powerful model is one thing. Building one that can be shoved into a desktop GUI application without making it grind to a halt is another challenge entirely. The model had to be fast, lightweight, and deliver predictions in near real-time. This meant optimizing every part of the inference pipeline, from model quantization to creating a streamlined input/output process. To make it even more seamless, I decided against bundling the model directly with the main software. Instead, I hosted it as a separate, downloadable add-on. This allows users to fetch the ADMET module from within InstaDock v2, ensuring the core application remains lightweight while giving users the power to easily add this advanced functionality.</p>
-            <h2>The Agonizing Limbo of Publication</h2>
-            <p>And now, for the paper. I documented my entire process, the novel data cleaning techniques, the model architecture, and the successful integration. I believe it's a genuinely interesting and useful study that bridges the gap between theoretical AI and practical drug discovery tools. The reviewers, it seems, agree on the "interesting" part. Yet, the paper continues to be rejected.</p>
-            <p>It’s a special kind of academic agony to receive feedback that essentially says, "This is great work, very relevant, but not for us." The study is making the rounds, collecting rejections from journals even as the feedback acknowledges its merits. It’s a frustrating, humbling, and frankly bizarre experience that highlights the immense challenge of finding the right home for interdisciplinary research. But I press on, confident that eventually, this work will find its place. Until then, the module is live, and our users are already benefiting from it, which is the most important impact of all.</p>
-			<p>PS. Also another hurdle was the amount of heat my workstation would generate while model training. With the amount of adaptability I learned while trying to mitigate the heat, I would consider an offer from Man v/s Wild.
-          </div>
-        </div>
-        
-        <div class="blog-post-card" role="button" tabindex="0">
+        </a>
+        <a class="blog-post-card" href="posts/the-software-engineering-behind-instadock-v2.html">
           <h3>The Software Engineering Behind InstaDock v2</h3>
           <div class="post-meta"><i class="fas fa-calendar-alt fa-fw"></i> Jul 25, 2025</div>
           <p class="excerpt">Beyond the science, a robust tool needs solid engineering. This post covers the UI/UX redesign, backend refactoring, and packaging challenges for the new InstaDock release.</p>
-          <div class="post-footer">
-            <div class="tag-list">
-              <span class="tag">InstaDock</span> <span class="tag">Python</span> <span class="tag">Software Dev</span> <span class="tag">GUI</span>
-            </div>
+          <div class="tag-list">
+            <span class="tag">InstaDock</span> <span class="tag">Python</span> <span class="tag">Software Dev</span> <span class="tag">GUI</span>
           </div>
-          <div class="full-post-content">
-			<h2>Wrangling the Python Hydra: The Making of InstaDock v2</h2>
-			  <p>There's a special kind of madness involved in turning a scientific proof-of-concept into robust, distributable software. For InstaDock v2, this was less of an update and more of a ground-up reconstruction, a multi-headed beast with thousands of lines of code. The entire application, built on a PyQt 5.15 framework, was re-engineered not just to add features, but to create a fundamentally more efficient and intuitive scientific ecosystem.</p>
-			  <p>The backend was completely gutted and refactored. My goal was to create a clean separation between the scientific logic and the UI, a task that sounds simple until you’re juggling the veritable menagerie of libraries required. We're talking RDKit and OpenBabel for core molecular wrangling, pyKVFinder for predicting binding cavities, and PDBFixer for wrestling unruly protein structures into shape. The user is presented with a buffet of scoring functions: the classic AutoDock Vina, the wide-search specialist QuickVina-W, and the blazing-fast AutoDock-GPU. All of this is topped off with a custom-built ADMET prediction module—a stacking ensemble framework combining a CatBoost model with a Direct Message Passing Neural Network (DMPNN), meticulously tuned with Optuna.</p>
-			  <p>Then came the final boss: packaging. Anyone who tells you creating a standalone, cross-platform executable from a complex Python environment is easy is either a liar or a wizard. The challenge is akin to putting a sentient octopus into a shoebox. You have to bundle platform-specific binaries for behemoths like PyTorch and RDKit, ensure all dependencies play nicely, and wrap it all in a simple installer for Windows and Ubuntu that just *works*. There was no magic bullet, just a grim determination and a lot of trial and error to tame the dependency hell and deliver a tool that hides all this glorious, chaotic complexity behind a single, double-clickable icon.</p>
-			  <p>PS. More on that ADMET model in another blogpost ;)</p>
-          </div>
-        </div>
-
-        <div class="blog-post-card" role="button" tabindex="0">
+        </a>
+        <a class="blog-post-card" href="posts/the-story-of-pypan-from-a-simple-script-to-a-published-tool.html">
           <h3>The Story of PyPAn: From a Simple Script to a Published Tool</h3>
           <div class="post-meta"><i class="fas fa-calendar-alt fa-fw"></i> Jul 11, 2025</div>
           <p class="excerpt">PyPAn started as a personal script to automate protein analysis. This is the story of how it evolved into a user-friendly GUI, the hurdles faced, and the path to publication.</p>
-          <div class="post-footer">
-            <div class="tag-list">
-              <span class="tag">PyPAn</span> <span class="tag">Python</span> <span class="tag">Bioinformatics</span> <span class="tag">Publication</span>
-            </div>
+          <div class="tag-list">
+            <span class="tag">PyPAn</span> <span class="tag">Python</span> <span class="tag">Bioinformatics</span> <span class="tag">Publication</span>
           </div>
-          <div class="full-post-content">
-			<h2>From a Django App to a Desktop Hydra: The Story of PyPAn</h2>
-			  <p>This whole project started not as a grand plan, but as a dissertation project: a crude, rudimentary advisory web app using Django that I named <a href="github.com/ym59/mmat">MMAT</a>. The simple goal was to help a user choose an appropriate protein structure modeling method, like homology, threading, or ab initio modeling—based on their input sequence. I soon realized that to make something genuinely useful, a simple advisor wasn't enough. What started as a focused web app quickly spiraled into the sprawling, multi-featured desktop hydra that is PyPAn.</p>
-			  <p>The real journey began when I decided to build a full-fledged graphical user interface (GUI) to solve a broader problem: the fragmented nature of protein analysis tools. Instead of just an advisor, PyPAn became an all-in-one platform integrating a suite of essential utilities. This included a sequence analysis tool that calculates a dozen physicochemical properties using Biopython, a multiple sequence alignment tool powered by a Clustal-Ω wrapper, and a structure analysis module that generates a Ramachandran plot and calculates both solvent accessibility and the radius of gyration. Despite creating a tool that was undeniably useful, getting it published was a humbling experience. As an aggregator, the concept wasn't seen as particularly novel, and the manuscript collected a fair share of rejections before finally finding a home. This post is about that evolution, from a simple script to a complex application and the often-frustrating path to publication.</p>
-          </div>
-        </div>
-
+        </a>
       </div>
     </main>
-
     <footer class="site-footer">
       <div>&copy; 2025 Yash Mathur - Designed & built with HTML & CSS</div>
     </footer>
   </div>
-
-  <div class="modal-overlay" id="postModal" role="dialog" aria-modal="true">
-    <div class="modal-content">
-      <div id="modalBody">
-        </div>
-      <button class="modal-close-btn" id="modalClose" aria-label="Close post">&times;</button>
-    </div>
-  </div>
-
   <button class="to-top" id="toTopBtn" aria-label="Back to top" title="Back to top">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5.5v13" stroke="#052337" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 9.5L12 4l5.5 5.5" stroke="#052337" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
-
   <script>
     document.addEventListener('DOMContentLoaded', ()=>{
-      // --- THEME TOGGLE SCRIPT ---
       const root=document.documentElement;
       const toggleBtn=document.getElementById('themeToggle');
       const sun=document.getElementById('sun');
       const moon=document.getElementById('moon');
       const prefersLight=window.matchMedia('(prefers-color-scheme: light)').matches;
-      function setTheme(t){ if(t==='light'){ root.classList.add('light'); toggleBtn.setAttribute('aria-pressed','true'); if(sun) sun.style.display='none'; if(moon) moon.style.display='block'; localStorage.setItem('site-theme','light'); } else { root.classList.remove('light'); toggleBtn.setAttribute('aria-pressed','false'); if(sun) sun.style.display='block'; if(moon) moon.style.display='none'; localStorage.setItem('site-theme','dark'); } }
+      function setTheme(t){
+        if(t==='light'){ root.classList.add('light'); toggleBtn.setAttribute('aria-pressed','true'); if(sun) sun.style.display='none'; if(moon) moon.style.display='block'; localStorage.setItem('site-theme','light'); }
+        else { root.classList.remove('light'); toggleBtn.setAttribute('aria-pressed','false'); if(sun) sun.style.display='block'; if(moon) moon.style.display='none'; localStorage.setItem('site-theme','dark'); }
+      }
       const saved=localStorage.getItem('site-theme');
       if(saved) setTheme(saved); else setTheme(prefersLight ? 'light' : 'dark');
       if(toggleBtn) toggleBtn.addEventListener('click', ()=> setTheme(root.classList.contains('light') ? 'dark' : 'light'));
 
-      // --- BACK TO TOP SCRIPT ---
       const toTop=document.getElementById('toTopBtn');
       function toggleToTop(){ if(window.scrollY>160) toTop.classList.add('is-visible'); else toTop.classList.remove('is-visible'); }
       window.addEventListener('scroll', toggleToTop, { passive:true });
       if(toTop) toTop.addEventListener('click', ()=> window.scrollTo({ top:0, behavior:'smooth' }));
-
-      // --- NEW MODAL SCRIPT ---
-      const postCards = document.querySelectorAll('.blog-post-card');
-      const modal = document.getElementById('postModal');
-      const modalBody = document.getElementById('modalBody');
-      const closeModalBtn = document.getElementById('modalClose');
-
-      // Function to open the modal
-      const openModal = (card) => {
-        const content = card.querySelector('.full-post-content');
-        if (content) {
-          modalBody.innerHTML = content.innerHTML;
-          modal.classList.add('is-visible');
-          document.body.classList.add('modal-open');
-        }
-      };
-
-      // Function to close the modal
-      const closeModal = () => {
-        modal.classList.remove('is-visible');
-        document.body.classList.remove('modal-open');
-        // Clear content after transition for smoother effect
-        setTimeout(() => { modalBody.innerHTML = ''; }, 300);
-      };
-
-      // Add click listeners to all blog cards
-      postCards.forEach(card => {
-        card.addEventListener('click', () => openModal(card));
-        // Also allow opening with Enter key for accessibility
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            openModal(card);
-          }
-        });
-      });
-
-      // Add listeners for closing the modal
-      closeModalBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => {
-        // Close only if the dark overlay itself is clicked
-        if (e.target === modal) {
-          closeModal();
-        }
-      });
-
-      // Add listener for closing with the Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
-          closeModal();
-        }
-      });
     });
   </script>
-
 </body>
 </html>
