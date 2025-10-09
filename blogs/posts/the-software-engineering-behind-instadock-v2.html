@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Software Engineering Behind InstaDock v2 — Yash Mathur</title>
+  <meta name="description" content="How InstaDock v2 went from scientific prototype to actual software: architecture rebuilds, dependency chaos, UI redesign, and packaging battles.">
+  <meta property="og:title" content="The Software Engineering Behind InstaDock v2">
+  <meta property="og:description" content="How InstaDock v2 went from scientific prototype to actual software: architecture rebuilds, dependency chaos, UI redesign, and packaging battles.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ym59.github.io/blogs/posts/the-software-engineering-behind-instadock-v2.html">
+  <meta property="og:image" content="https://ym59.github.io/images/YM.png">
+  <meta property="article:published_time" content="Jul 25, 2025">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Software Engineering Behind InstaDock v2">
+  <meta name="twitter:description" content="How InstaDock v2 went from scientific prototype to actual software: architecture rebuilds, dependency chaos, UI redesign, and packaging battles.">
+  <meta name="keywords" content="InstaDock, Python, Software Dev, GUI">
+
+  <link rel="icon" href="../images/YM.ico" />
+  <link rel="stylesheet" href="../styles/post-common.css">
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#0f1724;color:#cbd5e1;padding:28px}
+    .container{max-width:900px;margin:0 auto}
+    h1{color:#60a5fa}
+    .meta{color:#94a3b8;font-size:0.95rem;margin-bottom:14px}
+    .tags{margin-top:18px}
+    .tag{display:inline-block;background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;margin-right:8px;color:#7dd3fc}
+    a.home{display:inline-block;margin-top:18px;color:#60a5fa}
+    .content{line-height:1.75;color:#cbd5e1}
+    .callout{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:12px 14px;border-radius:10px}
+    @media (prefers-color-scheme:light) { body{background:#fff;color:#0b1220} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../nav.html" class="home">← Back to blog</a>
+    <h1>The Software Engineering Behind InstaDock v2</h1>
+    <div class="meta">Published: Jul 25, 2025 • Author: Yash Mathur</div>
+
+    <div class="content">
+      
+      <h3>From proof of concept to an actual application</h3>
+      <p>
+        There is a kind of madness in turning a scientific prototype into real software. 
+        The first version of InstaDock worked but only in the way prototypes usually do. 
+        It was fragile, messy, and tied together with the programming equivalent of duct tape. 
+        Version 2 was not an update. It was a rebuild. 
+        I had to make something that could scale, survive, and not set itself on fire at the sight of a large dataset.
+      </p>
+
+      <h3>Teaching the backend some manners</h3>
+      <p>
+        The old backend was like a cluttered lab bench. 
+        It needed structure, boundaries, and a deep cleaning session. 
+        I gutted and refactored the entire thing to enforce a clean separation between the scientific logic and the UI. 
+        That decision sounds simple but it required reorganizing the ecosystem of dependencies that power InstaDock.
+      </p>
+      <p>
+        Under the hood, InstaDock v2 is a lively party of libraries. 
+        <strong>RDKit</strong> and <strong>OpenBabel</strong> handle molecular parsing and conversions, 
+        <strong>pyKVFinder</strong> predicts binding cavities, and <strong>PDBFixer</strong> wrestles unruly protein structures into submission. 
+        Users can choose from multiple scoring functions such as AutoDock Vina, QuickVina-W, and AutoDock-GPU. 
+        On top of that, the application carries a custom-built ADMET prediction module that stacks CatBoost with a DMPNN. 
+        Hyperparameters were tuned with Optuna, which ran like a very patient robot scientist.
+      </p>
+
+      <h3>UX matters more than scientists like to admit</h3>
+      <p>
+        A tool can be scientifically brilliant and still be a pain to use. 
+        The UI in v2 had to feel intuitive, not like a control panel from a nuclear submarine. 
+        PyQt 5.15 became the backbone of a redesigned interface that lets users set up docking runs, analyze results, and fetch AI predictions without digging through menus. 
+        Every major feature now lives where users expect it to be.
+      </p>
+
+      <h3>Packaging, or how to fit a hydra in a shoebox</h3>
+      <p>
+        Creating a standalone, cross-platform executable for complex scientific software is not glamorous. 
+        It is slow, frustrating, and sometimes feels personal. 
+        Bundling PyTorch, RDKit, and everything else into something that can be double-clicked is like trying to stuff a sentient hydra into a very small box.
+      </p>
+      <p>
+        Platform-specific binaries needed to be managed carefully, dependency conflicts had to be charmed into silence, and the final build had to install without terrifying users. 
+        The installer now works on Windows and Ubuntu and hides the messy complexity behind a friendly icon. 
+        It looks simple on the surface because the chaos is buried underneath.
+      </p>
+
+      <div class="callout">
+        InstaDock v2 is the product of science meeting engineering. 
+        The algorithms may power it, but the structure, design, and polish (and a lot of coffee) make it something people actually want to use.
+      </div>
+
+      <p>
+        PS. If anyone tells you Python packaging is easy, they are either a wizard or lying through their teeth.
+      </p>
+    </div>
+
+    <div class="tags">
+      <span class="tag">InstaDock</span><span class="tag">Python</span><span class="tag">Software Dev</span><span class="tag">GUI</span>
+    </div>
+    <p style="margin-top:36px;color:#94a3b8">
+      Share: <a href="https://ym59.github.io/blogs/posts/the-software-engineering-behind-instadock-v2.html">
+      https://ym59.github.io/blogs/posts/the-software-engineering-behind-instadock-v2.html</a>
+    </p>
+  </div>
+</body>
+</html>
