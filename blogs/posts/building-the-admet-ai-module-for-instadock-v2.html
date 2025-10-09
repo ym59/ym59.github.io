@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Building the ADMET AI Module for InstaDock v2</title>
+  <meta name="description" content="Behind the scenes of how the ADMET prediction engine in InstaDock v2 was built: datasets, models, optimization, deployment headaches, and lessons learned.">
+  <meta property="og:title" content="Building the ADMET AI Module for InstaDock v2">
+  <meta property="og:description" content="Behind the scenes of how the ADMET prediction engine in InstaDock v2 was built: datasets, models, optimization, deployment headaches, and lessons learned.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ym59.github.io/blogs/posts/building-the-admet-ai-module-for-instadock-v2.html">
+  <meta property="og:image" content="https://ym59.github.io/images/YM.png">
+  <meta property="article:published_time" content="Aug 22, 2025">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Building the ADMET AI Module for InstaDock v2">
+  <meta name="twitter:description" content="Behind the scenes of how the ADMET prediction engine in InstaDock v2 was built: datasets, models, optimization, deployment headaches, and lessons learned.">
+  <meta name="keywords" content="InstaDock, AI, Software Dev, Cheminformatics, Machine Learning">
+
+  <link rel="icon" href="../images/YM.ico" />
+  <link rel="stylesheet" href="../styles/post-common.css">
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#0f1724;color:#cbd5e1;padding:28px}
+    .container{max-width:900px;margin:0 auto}
+    h1{color:#60a5fa}
+    .meta{color:#94a3b8;font-size:0.95rem;margin-bottom:14px}
+    .tags{margin-top:18px}
+    .tag{display:inline-block;background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;margin-right:8px;color:#7dd3fc}
+    a.home{display:inline-block;margin-top:18px;color:#60a5fa}
+    .content{line-height:1.75;color:#cbd5e1}
+    .callout{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:12px 14px;border-radius:10px}
+    @media (prefers-color-scheme:light) { body{background:#fff;color:#0b1220} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../nav.html" class="home">← Back to blog</a>
+    <h1>Building the ADMET AI Module for InstaDock v2</h1>
+    <div class="meta">Published: Aug 22, 2025 • Author: Yash Mathur</div>
+
+    <div class="content">
+      
+      <h3>When docking scores were not enough</h3>
+      <p>
+        InstaDock was already doing its job well. It could screen compounds, calculate docking scores, and make researchers feel like they were holding the keys to molecular destiny. 
+        But beneath that optimistic glow was an obvious question that users were not shy to ask. 
+        “Great score, but is the compound even viable?” 
+        A molecule that binds beautifully and then fails on absorption or toxicity is like winning a race with no finish line. 
+        This was the gap that pushed me to build an ADMET prediction engine inside InstaDock v2.
+      </p>
+
+      <h3>Before the model, there was the mountain of data</h3>
+      <p>
+        Anyone who has touched applied machine learning knows that the glamorous part with models is barely 20 percent of the work. 
+        The rest is data wrangling, cleaning, muttering to yourself, and watching your workstation heat up like a toaster. 
+        I sourced data from public repositories like <strong>TDCommons</strong> and <strong>DeepPK</strong>, merged and cleaned them with as much care as if they were delicate crystals, and built a training foundation strong enough to support something real.
+      </p>
+      <p>
+        Each property came with its own personality. Some datasets were friendly and balanced. Others were wildly skewed, especially the toxicity endpoints where positive labels were rare, just like in real life. 
+        These imbalances were small data demons that needed careful handling to avoid models that simply predict the majority class and call it a day.
+      </p>
+
+      <h3>Architectural decisions, or how to make molecules talk</h3>
+      <p>
+        I went with a <strong>Direct Message Passing Neural Network (DMPNN)</strong>. 
+        The appeal of DMPNN is simple. Instead of feeding molecules as static fingerprints, it lets the network learn directly from their graph structure. 
+        This makes it better at understanding subtle interactions that a fixed descriptor might miss.
+      </p>
+      <p>
+        The training stack was a who’s who of my favorite tools. 
+        <strong>PyTorch Lightning</strong> structured the training pipeline, <strong>Chemprop</strong> gave me a clean starting point, 
+        and I experimented with <strong>CatBoost</strong> and <strong>scikit-learn</strong> models for specific properties. 
+        Hyperparameter tuning was handled by <strong>Optuna</strong>, which cheerfully devoured my GPU cycles for days in search of optimal settings.
+      </p>
+
+      <h3>The desktop problem that refused to be ignored</h3>
+      <p>
+        A big model running in a research notebook is one thing. 
+        A big model squeezed into a desktop GUI that should respond in seconds is a different kind of puzzle. 
+        I spent weeks trimming every part of the inference pipeline. 
+        The goal was to make predictions feel immediate without sacrificing quality. 
+        Quantization helped, as did optimizing how input and output flowed through the model.
+      </p>
+      <p>
+        I decided not to bundle the model with the core software. 
+        Instead, users can fetch the ADMET module as a separate add-on. 
+        This keeps the main application lightweight and lets people pull in the heavy AI component only when they actually need it. 
+        It is practical and, honestly, much kinder to anyone working on a less powerful machine.
+      </p>
+
+      <h3>The publication labyrinth</h3>
+      <p>
+        Alongside the code, I documented everything with the optimism of a researcher who believes good work will speak for itself. 
+        I wrote about the data cleaning techniques, the architecture, the way it was embedded into a real tool. 
+        The feedback from journals has been positive but the paper is still searching for its permanent home. 
+        It has been an education in how unpredictable academic publishing can be, even for technically solid work.
+      </p>
+
+      <div class="callout">
+        Even without a journal reference attached to its name, the ADMET module is live and working inside InstaDock v2. 
+        That impact has a different kind of weight. It is immediate, measurable, and in the hands of researchers who need it.
+      </div>
+
+      <p>
+        Also, as a side note, training these models made my workstation sound like a jet engine. 
+        I learned enough about heat management to qualify as a contestant on Man vs Wild.
+      </p>
+    </div>
+
+    <div class="tags">
+      <span class="tag">InstaDock</span><span class="tag">AI</span><span class="tag">Software Dev</span><span class="tag">Cheminformatics</span><span class="tag">Machine Learning</span>
+    </div>
+    <p style="margin-top:36px;color:#94a3b8">
+      Share: <a href="https://ym59.github.io/blogs/posts/building-the-admet-ai-module-for-instadock-v2.html">
+      https://ym59.github.io/blogs/posts/building-the-admet-ai-module-for-instadock-v2.html</a>
+    </p>
+  </div>
+</body>
+</html>
