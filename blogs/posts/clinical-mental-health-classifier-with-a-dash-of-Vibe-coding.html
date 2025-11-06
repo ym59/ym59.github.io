@@ -48,6 +48,23 @@
       color:var(--text);
       -webkit-font-smoothing:antialiased;
     }
+    
+	.content,
+	.content p,
+	.content li,
+	.content .callout,
+	.content .callout p {
+	  text-align: justify;
+	  text-justify: inter-word;
+	  hyphens: auto;
+	  /* keep the last line readable rather than stretched */
+	  text-align-last: left;
+	}
+
+	/* Optional: keep small UI elements unaffected */
+	.meta, .post-top, .tags, .tag, h1, h3 {
+	  text-align: left;
+	}
     .container{max-width:900px;margin:0 auto;padding:28px 20px}
     h1{color:var(--accent-2)}
     .meta{color:var(--muted);font-size:0.95rem;margin-bottom:14px}
@@ -109,72 +126,84 @@
 
     <div class="content">
       <h3>How it started: vibes and Reddit posts</h3>
-      <p>
-        This whole project began with the slightly unhinged idea of building a system that could read a Reddit post
-        and say something vaguely intelligent about the writer’s mental state. 
-        Not diagnose, that’s far too ambitious, but <em>classify</em> the tone into clinical categories like “Anxiety Disorder” or “Mood Disorder,”
-        and flash appropriate resources when the language looks risky.
-      </p>
-      <p>
-        It started as a college project and ended up becoming a Flask app stitched to a CNN + TF-IDF ensemble,
-        with crisis override logic stubbornly baked in.
-      </p>
+	<p>
+	  This project began with a somewhat impulsive idea: to build a system that could read Reddit posts and make sense of the writer’s mental and emotional state.  
+	  Not diagnose, of course, because that would be presumptuous and unsafe, but rather to identify the tone and categorize it into broad clinical groups such as 
+	  “Anxiety Disorder”, “Mood Disorder”, or “General Emotional Distress”.  
+	  The intention was to make the model sensitive enough to notice when language hinted at crisis, and to respond by displaying mental health resources instead of cold predictions.  
+	</p>
+	<p>
+	  What began as a small college experiment gradually turned into something more serious.  
+	  The prototype grew into a Flask web application powered by a hybrid architecture that combines a Convolutional Neural Network (CNN) with a TF-IDF based model.  
+	  To prevent it from making risky assumptions, I added a crisis override that always intervenes when certain phrases appear, no matter what the classifier believes.  
+	  It is, in essence, a careful balance between machine logic and human responsibility.
+	</p>
 
-      <h3>Two brains are better than one</h3>
-      <p>
-        The model is technically a duet:
-      </p>
-      <ul>
-        <li>The <strong>CNN</strong> acts like a close reader, scanning the text sequence and paying attention to context.</li>
-        <li>The <strong>TF-IDF model</strong> is the pedantic linguist, fixated on word importance and frequency.</li>
-      </ul>
-      <p>
-        Their outputs are averaged, producing a probability distribution that’s cleaner than either model alone.
-        Confidence is judged not just by peak probability but also by entropy, a rough measure of how certain the model actually is.
-      </p>
+	<h3>Two brains are better than one</h3>
+	<p>
+	  The core of the system relies on a pair of very different models that somehow work better together than they do individually.  
+	</p>
+	<ul>
+	  <li>The <strong>CNN</strong> functions as a pattern detector. It processes sequences of words, paying attention to context, emotion, and phrasing. It notices the subtleties that humans often describe as “tone.”</li>
+	  <li>The <strong>TF-IDF model</strong> is more literal. It measures the importance of each word based on how often it appears relative to the whole dataset, grounding the intuition of the CNN in statistical reasoning.</li>
+	</ul>
+	<p>
+	  Their predictions are averaged to create a more stable output. This approach reduces the tendency of either model to overreact to individual phrases.  
+	  Confidence is assessed not only by looking at the highest probability score, but also by analyzing entropy, which provides a rough estimate of how certain the model is about its own conclusions.  
+	  The combination gives the system a kind of simulated self-awareness about uncertainty, which is surprisingly useful when dealing with human language.
+	</p>
 
-      <h3>PRAW, or: How I stopped worrying and learned to fetch</h3>
-      <p>
-        Reddit posts are the fuel here. 
-        If you paste a link, the backend uses PRAW if available (fancy) or JSON scraping if not (less fancy but works).
-        Title and body text are combined, cleaned, and served straight to the classifier.
-      </p>
-      <p>
-        <code>clean_text()</code> quietly removes URLs, handles, and general Reddit noise, so the models don’t have to work overtime.
-      </p>
+	<h3>PRAW, or how I stopped worrying and learned to fetch</h3>
+	<p>
+	  The system draws its input from Reddit itself.  
+	  When a user pastes a Reddit link, the backend attempts to retrieve the post using PRAW, Reddit’s official API wrapper.  
+	  If PRAW is unavailable, it falls back to a more direct method using JSON scraping.  
+	  The process is simple but surprisingly resilient. Title and body text are extracted, cleaned, and then merged into one block of content that becomes the model’s input.  
+	</p>
+	<p>
+	  The <code>clean_text()</code> function performs the quiet, essential work of removing URLs, usernames, emojis, and general social-media debris.  
+	  By the time the text reaches the classifier, it has been stripped of the noise that would otherwise confuse the models.  
+	  This preprocessing step is what allows the system to stay focused on meaning rather than metadata.
+	</p>
 
-      <h3>The red button: crisis override</h3>
-      <p>
-        Before the models even get a chance, every input is checked for a list of crisis keywords.
-        If a match appears, the system <em>ignores the classifier entirely</em> and throws up crisis support resources.
-        This is intentional. When someone says “I want to die,” no neural network should be allowed to debate probabilities.
-      </p>
-      <div class="callout">
-        This isn’t just a neat feature, it’s the difference between treating text like data and remembering it comes from real people.
-      </div>
+	<h3>The red button: crisis override</h3>
+	<p>
+	  Before any text reaches the classifier, it is screened for a curated list of crisis-related words and phrases.  
+	  If one of these is detected, the system bypasses the model entirely and immediately returns crisis support resources.  
+	  This design choice is deliberate. No matter how accurate the algorithm becomes, it should never be trusted to make a probabilistic judgment when someone expresses an intent to harm themselves.  
+	</p>
+	<div class="callout">
+	  This safeguard might seem like a technical detail, but it represents the core idea behind the entire project: that data comes from people, and treating it responsibly matters more than model performance.
+	</div>
 
-      <h3>Making labels human again</h3>
-      <p>
-        Instead of subreddits or cryptic tags, outputs are mapped to clinical categories, 
-        Anxiety Disorder, PTSD, Substance Use Disorder, General Emotional Distress, and more —
-        each with a brief description and resource links. Crisis cases bring up hotline numbers directly.
-      </p>
-      <p>
-        The UI uses Chart.js to draw a confidence gauge and probability bars.
-        It’s part science, part UX storytelling.
-      </p>
+	<h3>Making labels human again</h3>
+	<p>
+	  Many machine learning models output cryptic tags, subreddit names, or meaningless label IDs.  
+	  I wanted this one to produce something that made sense to a human reader.  
+	  Each classification result is mapped to a recognizable clinical category such as Anxiety Disorder, PTSD, Substance Use Disorder, or General Emotional Distress.  
+	  Alongside these, the app displays a brief summary explaining what that category usually represents, along with resource links for anyone who might want help.  
+	  When a message falls into a crisis category, the interface directly displays hotline numbers instead of technical information.  
+	</p>
+	<p>
+	  The web interface is intentionally minimal. It uses Chart.js to draw confidence bars and probability charts, giving users a quick sense of how certain the system feels about its predictions.  
+	  The visual feedback transforms the model’s internal math into something that feels more like a dialogue, rather than a black box issuing verdicts.
+	</p>
 
-      <h3>Structure of a tiny classifier</h3>
-      <ul>
-        <li><strong>Frontend:</strong> One HTML page, Bootstrap styling, and Chart.js visualization.</li>
-        <li><strong>Backend:</strong> Flask routes <code>/</code>, <code>/fetch</code>, and <code>/predict</code>.</li>
-        <li><strong>Models:</strong> CNN and TF-IDF averaged after softmax.</li>
-        <li><strong>Safety:</strong> Crisis override > classification.</li>
-      </ul>
+	<h3>Structure of a tiny classifier</h3>
+	<ul>
+	  <li><strong>Frontend:</strong> A single HTML page that uses Bootstrap for layout and Chart.js for visualization.</li>
+	  <li><strong>Backend:</strong> Flask routes for <code>/</code>, <code>/fetch</code>, and <code>/predict</code> handle all requests.</li>
+	  <li><strong>Models:</strong> A CNN and a TF-IDF model whose outputs are averaged after softmax normalization.</li>
+	  <li><strong>Safety:</strong> The crisis override always takes priority over classification logic.</li>
+	</ul>
 
-      <div class="callout">
-        It’s small, explainable, and intentionally cautious, an experiment in making machine learning feel less like a black box and more like a careful collaborator.
-      </div>
+	<div class="callout">
+	  The classifier is intentionally small and transparent.  
+	  It is not built to impress benchmarks, but to explore what happens when artificial intelligence is designed to act cautiously and communicate clearly.  
+	  The goal was never to replace human judgment, only to build a system that understands when to stay quiet.
+	</div>
+
+
     </div>
 
     <div class="tags">
@@ -218,5 +247,4 @@
   </script>
 </body>
 </html>
-
 
