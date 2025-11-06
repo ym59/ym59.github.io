@@ -48,6 +48,25 @@
       color:var(--text);
       -webkit-font-smoothing:antialiased;
     }
+	
+	.content,
+	.content p,
+	.content li,
+	.content .callout,
+	.content .callout p {
+	  text-align: justify;
+	  text-justify: inter-word;
+	  hyphens: auto;
+	  /* keep the last line readable rather than stretched */
+	  text-align-last: left;
+	}
+	
+	/* Optional: keep small UI elements unaffected */
+	.meta, .post-top, .tags, .tag, h1, h3 {
+	  text-align: left;
+	}
+
+	  
     .container{max-width:900px;margin:0 auto;padding:28px 20px}
     h1{color:var(--accent-2)}
     .meta{color:var(--muted);font-size:0.95rem;margin-bottom:14px}
