@@ -58,6 +58,22 @@
     .content{line-height:1.75;color:var(--text)}
     .callout{background:var(--card);border:1px solid var(--glass);padding:12px 14px;border-radius:10px}
 
+    /* JUSTIFICATION ADDED */
+    .content,
+    .content p,
+    .content li,
+    .content .callout,
+    .content .callout p {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+      text-align-last: left;
+    }
+
+    .meta, .post-top, .tags, .tag, h1, h3 {
+      text-align: left;
+    }
+
     .post-top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
     .spacer{flex:1}
 
@@ -73,15 +89,14 @@
 	  align-items:center;
 	  justify-content:center;
 	  color:var(--muted);
-	  line-height:0;           /* no extra baseline space */
-	  /* no overflow hidden here */
+	  line-height:0;
 	  box-sizing:border-box;
 	}
 	.theme-toggle svg{
-	  width:22px;              /* a bit larger but still safe */
+	  width:22px;
 	  height:22px;
-	  display:block;           /* removes baseline offset */
-	  overflow:visible;        /* allow stroke to extend outside viewBox */
+	  display:block;
+	  overflow:visible;
 	}
   </style>
 </head>
@@ -110,61 +125,61 @@
       
       <h3>The innocent idea that became a marathon</h3>
       <p>
-        The plan was simple. Write a short, clean review on AI in drug discovery. 
-        Consolidate the latest advancements. Provide a nice, readable overview. 
-        The kind of thing that sounds reasonable over coffee and then turns into an eight-month intellectual marathon.
+        The original plan seemed harmless enough. I thought it would be simple to write a concise review on the use of artificial intelligence in drug discovery, summarize a few recent advancements, and stitch together a readable narrative. 
+        It sounded entirely manageable during the first coffee-fueled discussion. What followed instead was an eight-month intellectual marathon filled with both fascination and fatigue.  
       </p>
       <p>
-        The field is enormous. Every subdomain spawns ten more. 
-        Instead of narrowing the focus like sensible people, we aimed to cover the landscape. 
-        It was a bold choice and, in hindsight, a slightly reckless one.
+        The field of AI in drug discovery is so broad that every attempt to narrow it immediately splits into new branches. 
+        Each subdomain seems to contain ten more waiting underneath. 
+        Rather than trimming the scope like sensible people might, we made the bold, slightly naive decision to cover as much of the landscape as possible. 
+        It was equal parts ambition and curiosity, and it turned the project into an unexpectedly deep exploration.
       </p>
 
-      <h3>When the search engine turned into a tidal wave</h3>
+      <h3>When the search engine became a tidal wave</h3>
       <p>
-        A first-pass search for “AI” and “drug discovery” brought back more than 50,000 results. 
-        That number is not inspiring. It is terrifying. 
-        Through several rounds of filtering, we carved it down to about 500 key papers, each one waiting to be read, understood, and woven into a bigger story.
+        The first literature search for “AI” and “drug discovery” returned more than fifty thousand results. 
+        That number was less exciting than it was paralyzing. 
+        Several rounds of refinement, filtering, and quiet despair eventually reduced the pile to about five hundred key papers. 
+        Each one needed to be read, understood, and integrated into something coherent.  
       </p>
       <p>
-        Organization became survival. A gigantic Excel sheet became my anchor, with every paper slotted by application, method, and relevance. 
-        <strong>Semantic Scholar</strong> and <strong>Elicit</strong> made high-level triage bearable. 
-        <strong>Research Rabbit</strong> was my guilty pleasure, because citation graphs are strangely addictive.
+        Organization soon became a survival mechanism. 
+        A sprawling spreadsheet became the backbone of the process, with every entry carefully tagged by application area, algorithm, and relevance. 
+        <strong>Semantic Scholar</strong> and <strong>Elicit</strong> made it possible to triage the papers efficiently, while <strong>Research Rabbit</strong> provided an oddly addictive visual representation of citations and relationships between studies.  
       </p>
 
       <h3>The strange comfort of digital clutter</h3>
       <p>
-        My setup reflected a split personality. 
-        <strong>EndNote</strong> managed citations with military precision. 
-        <strong>Obsidian</strong> was pure chaos, filled with half-baked thoughts, loose ideas, and references I swore I’d organize later. 
-        Somewhere in between, the actual paper began to take shape.
+        My workspace was a reflection of two opposite instincts: structure and chaos. 
+        <strong>EndNote</strong> handled references with precision worthy of an accountant, while <strong>Obsidian</strong> became a sandbox of half-formed notes, scattered insights, and hastily saved links that I repeatedly promised myself to clean up.  
+        Somewhere between the two, the outline of the paper began to take shape.  
       </p>
       <p>
-        One insight stood out as the reading pile grew. 
-        Excellence is not confined to glossy journals. 
-        Some of the most creative, rigorous work sat on <strong>arXiv</strong>, patiently waiting for peer review while already contributing meaningfully to the field.
+        One realization became increasingly clear as the pile of reading grew taller: some of the most original and technically elegant work does not appear in high-impact journals.  
+        Many outstanding contributions first appear on <strong>arXiv</strong>, quietly building influence long before formal publication. 
+        It was a reminder that great science often thrives outside the traditional pathways of prestige.
       </p>
 
       <h3>Finding the narrative</h3>
       <p>
-        Writing a review is not just about summarizing papers. It is about finding the threads that connect them. 
-        In AI-driven drug discovery, those threads ran through target identification, hit generation, lead optimization, and ADMET prediction. 
-        The literature was diverse, but the story emerged once I mapped how different methods were quietly talking to each other.
+        Writing a review is never just about summarizing information. It is about uncovering the relationships between ideas and showing how they evolve.  
+        In this field, the connecting threads wove through every major phase of the drug discovery pipeline: from target identification to hit discovery, from lead optimization to ADMET prediction.  
+        The literature seemed fragmented at first, but as I traced the conceptual bridges, a narrative began to emerge about how these methods were quietly converging toward a unified ecosystem of data-driven discovery.  
       </p>
       <div class="callout">
-        Review papers live or die on structure. 
-        Without it, even the best content is just a pile of smart words.
+        A good review paper depends as much on structure as it does on substance. Without organization, even the most insightful content collapses into noise.
       </div>
 
       <h3>The quiet victories</h3>
       <p>
-        There were no big cinematic breakthroughs here. 
-        Just many small wins. A better way to group the papers. A figure that finally made sense. A section that stopped sounding like a tax form. 
-        Slowly, the chaos turned into something coherent.
+        There were no grand moments of revelation here, only a collection of small, patient wins.  
+        A paragraph rewritten for clarity. A figure that finally made sense after the tenth draft. A table that no longer felt like a tax audit.  
+        Gradually, chaos gave way to rhythm, and the project began to resemble something worth reading.  
       </p>
       <p>
-        Looking back, the process was exhausting but strangely satisfying. 
-        It reminded me that science is as much about the architecture of thought as it is about the content itself.
+        Looking back, the process was equal parts exhausting and rewarding.  
+        It reminded me that science is not only about discovery but also about the architecture of understanding itself.  
+        Writing forced me to connect scattered fragments into something continuous, and in doing so, I came to appreciate the quiet discipline that underlies every meaningful piece of scientific communication.
       </p>
     </div>
 
@@ -209,5 +224,3 @@
   </script>
 </body>
 </html>
-
-
