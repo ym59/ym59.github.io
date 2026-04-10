@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Visitor Number Three-ish: A Friendly Look at 3I/ATLAS: Yash's Musings</title>
+  <meta name="description" content="A personal, science-forward look at interstellar comet 3I/ATLAS. Why it matters, why it's not a light show, and a tiny bit of tinfoil fun." />
+  <link rel="icon" href="../../images/YM.ico" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <style>
+    :root{
+      --bg:#fafafa;--text:#4b5563;--heading:#1a1a2e;--muted:#9ca3af;
+      --link:#4a7f96;--warm:#b8854a;--border:rgba(0,0,0,0.08);--max-w:960px;
+    }
+    html.dark{
+      --bg:#0d1017;--text:#9ca3af;--heading:#c8cfd7;--muted:#5c6370;
+      --link:#6aacca;--warm:#d0a06a;--border:rgba(255,255,255,0.06);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);color:var(--text);
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      line-height:1.65;-webkit-font-smoothing:antialiased;
+      transition:background-color 180ms,color 180ms;
+    }
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+    
+    header{
+      display:flex;align-items:center;gap:14px;
+      padding:20px 0;border-bottom:1px solid var(--border);
+    }
+    .logo{width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0}
+    .logo img{width:100%;height:auto;display:block}
+    .hdr-name{font-size:1rem;font-weight:600;color:var(--heading)}
+    .hdr-tag{font-size:0.78rem;color:var(--muted);margin-top:1px}
+    .nav{display:flex;gap:4px;margin-left:auto;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .nav a,.nav button{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:30px;padding:0 8px;border-radius:5px;
+      color:var(--muted);font-size:0.82rem;
+      border:1px solid transparent;background:none;cursor:pointer;
+      transition:color 150ms;font-family:inherit;
+    }
+    .nav a:hover,.nav button:hover{color:var(--text);text-decoration:none}
+    .nav-sep{width:1px;height:14px;background:var(--border);margin:0 2px}
+
+    .post-header{
+      padding:48px 0 24px;
+      max-width:740px;
+      margin:0 auto;
+    }
+    .post-date{
+      display:inline-block;font-size:0.72rem;font-weight:600;
+      text-transform:uppercase;letter-spacing:0.04em;
+      color:var(--warm);margin-bottom:10px;
+    }
+    .post-header h1{
+      font-size:1.6rem;font-weight:600;color:var(--heading);
+      line-height:1.35;letter-spacing:-0.01em;
+    }
+    
+    .post-content{
+      max-width:740px;
+      margin:0 auto;
+      padding-bottom:48px;
+    }
+    .post-content p{
+      margin-top:16px;
+      text-align:justify;
+      text-align-last:left;
+    }
+    .post-content b, .post-content strong{color:var(--heading);font-weight:500}
+    
+    .post-content img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .img-row {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      align-items: center;
+    }
+    .img-row img {
+      flex: 1;
+      margin: 0;
+      max-height: 280px;
+      width: auto;
+      object-fit: contain;
+      border: none;
+      border-radius: 0;
+    }
+
+    .postscript {
+      margin-top: 2px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    footer{padding:20px 0;border-top:1px solid var(--border);text-align:center;font-size:0.78rem;color:var(--muted)}
+    .to-top{
+      position:fixed;right:20px;bottom:20px;
+      width:32px;height:32px;border-radius:6px;
+      border:1px solid var(--border);background:var(--bg);
+      color:var(--muted);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;transition:opacity 150ms,color 150ms,z-index:100;
+    }
+    .to-top.show{opacity:1}
+    .to-top:hover{color:var(--link)}
+
+    @media(max-width:600px){
+      header{flex-wrap:wrap}.nav{width:100%;margin-top:8px}
+      .img-row{flex-direction:column;gap: 12px;}
+      .img-row img {max-height: 220px;}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0s!important}html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="../../images/YM.png" alt="YM"></div>
+      <div>
+        <div class="hdr-name">Yash Mathur</div>
+        <div class="hdr-tag">PhD Scholar, Computational Biologist, AI Enthusiast</div>
+      </div>
+      <nav class="nav" aria-label="Links">
+        <a href="../nav.html" title="All Posts">Musings</a>
+        <span class="nav-sep"></span>
+        <a href="../../index.html" title="Home"><i class="fas fa-arrow-left"></i></a>
+        <span class="nav-sep"></span>
+        <a href="https://www.linkedin.com/in/yash-mathur-b538262a/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://orcid.org/0000-0003-2753-0557" target="_blank" rel="noopener noreferrer" title="ORCID"><i class="fab fa-orcid"></i></a>
+        <a href="https://github.com/ym59" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:yash185973@st.jmi.ac.in" title="Email"><i class="fas fa-envelope"></i></a>
+        <button id="themeToggle" aria-pressed="true" title="Toggle theme">
+          <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+          <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="post-header">
+        <div class="post-date">[September 16, 2025]</div>
+        <h1>Visitor Number Three-ish: A Friendly Look at 3I/ATLAS</h1>
+      </div>
+
+      <article class="post-content">
+        <p>Okay, so remember 'Oumuamua?</p>
+        
+        <img src="https://c.tenor.com/YQxuByJ1TbcAAAAC/tenor.gif" alt="good name meme">
+
+        <p>That weird, cigar-shaped rock that zoomed through our solar system back in 2017? And then Borisov, the sneaky comet that showed up a couple of years later?</p>
+
+        <p>How did they get in!! DEPORT THEM RIGHT NOW!</p>
+
+        <img src="https://content.imageresizer.com/images/memes/Triggered-Plankton-meme-9.jpg" alt="triggered plankton meme">
+		<p class="postscript">P.S. A joke.</p>
+
+        <p>Well, grab your coffee, because we officially have a third interstellar visitor hanging around the neighborhood. Meet <b>3I/ATLAS</b>. Honestly, the astronomical community reacts to these things exactly like a dog seeing a squirrel. We are just collectively losing our minds and pointing at the sky right now.</p>
+
+        <div class="img-row">
+          <img src="https://i.pinimg.com/736x/84/c5/bc/84c5bcd32d4c6e231e2efaba82d56b7b.jpg" alt="dog looking at stars meme">
+          <img src="https://s3.amazonaws.com/media.wishpond.com/media/001/233/711/large.jpg?1394556095" alt="squirrel meme">
+        </div>
+        <p class="postscript">P.S. Why is the dog watching stars in broad daylight? Is it stupid?</p>
+
+        <p>So, how do we actually know this space rock is from outside our solar system? It all comes down to orbital mechanics and a little concept called eccentricity. Basically, it is how Tony Stark behaves, but I ain't complaining it to John Marvel. But in all seriousness, eccentricity is a number that tells you how non-circular an object's path is. If it is a perfect circle, the number is zero. If it is a stretched out oval, the number sits between zero and one. Anything above one means the object is on a hyperbolic trajectory. Which in turn means that it came in from deep space, swung around our sun, and is now booking it out of here forever.</p>
+
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjIxamdyYnR5aWFhN2VibWU3ZDZlYmxuNjY2ZW95ODNqNTFzaTN6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JC1nec6IozMW3iCPRF/giphy.gif" alt="booking it out of here gif">
+
+        <p>It is not gravitationally bound to us at all. Sometimes objects from our own Oort cloud (just like the guy in your 2nd grade that had a lot of potential, this is a failed planet turned into a giant, icy shell of debris at the very edge of the solar system) get knocked loose and fall toward the sun on a slightly weird path. But to get a path this extreme, something has to be moving incredibly fast, way faster than our own sun's gravity can explain. It is actually incredibly rare for an Oort cloud object to get a big enough gravitational kick to look this hyperbolic. This one is just moving way too fast, proving it belongs to another star entirely.</p>
+
+        <img src="https://c.tenor.com/FSEk_JJE4U0AAAAC/tenor.gif" alt="tenor gif">
+
+        <p>Now, let's put on our tin foil hats for a minute. You just know the internet is buzzing with fringe theories about this thing. Is it an alien probe? Is it a von Neumann probe sent here to quietly turn our planet into a giant factory? Or maybe it is just an ancient alien UPS package that got lost in the mail a few billion years ago? People jump to these wild conclusions mostly because of 'Oumuamua. When that first visitor swung by, it showed a tiny bit of unexpected acceleration that scientists could not perfectly explain right away (though outgassing (space fart, but you win NASA) is the leading theory now). Once you say "we do not know" in space science, the alien theories multiply like rabbits.</p>
+
+        <img src="https://notesfromachair.com/wp-content/uploads/2017/05/ikjjbry.jpg?w=585" alt="conspiracy theory meme">
+
+        <p>But let's bring it back down to earth for a second. What does the actual data tell us? When we point our telescopes at 3I/ATLAS and do a spectral analysis, we are essentially looking at the rainbow of light bouncing off its surface. This tells us exactly what the object is made of. Spoiler alert: it is probably just a dirty snowball or a standard rocky chunk, definitely not a spaceship with running lights. While it is fun to joke about little green men, studying these interstellar visitors is incredibly valuable for totally non-alien reasons. These objects are basically untouched time capsules from other star systems. By looking at their chemistry, we get a free peek into how planets form around stars that are not our sun. It is the ultimate cosmic cross-section, and honestly, a plain old dirty snowball from another star is weird and wonderful enough on its own.</p>
+      </article>
+    </main>
+
+    <footer>&copy; 2025 Yash Mathur</footer>
+  </div>
+
+  <button class="to-top" id="toTopBtn" aria-label="Back to top">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m0 0l-6 6m6-6l6 6"/></svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const r=document.documentElement,b=document.getElementById('themeToggle'),
+            s=document.getElementById('ico-sun'),m=document.getElementById('ico-moon'),
+            t=document.getElementById('toTopBtn'),
+            p=window.matchMedia('(prefers-color-scheme:light)').matches;
+      function set(v){
+        if(v==='light'){r.classList.remove('dark');b.setAttribute('aria-pressed','true');s.style.display='block';m.style.display='none';localStorage.setItem('t','light')}
+        else{r.classList.add('dark');b.setAttribute('aria-pressed','false');s.style.display='none';m.style.display='block';localStorage.setItem('t','dark')}
+      }
+      const sv=localStorage.getItem('t');sv?set(sv):set(p?'light':'dark');
+      b.addEventListener('click',()=>set(r.classList.contains('dark')?'light':'dark'));
+      const c=()=>{t.classList.toggle('show',window.scrollY>200)};
+      window.addEventListener('scroll',c,{passive:true});
+      t.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Journey Writing a Review on AI in Drug Discovery: Yash's Musings</title>
+  <meta name="description" content="From the king to the ring, from the title to the thing! A look into the eight-month process of writing a review on AI in drug discovery." />
+  <link rel="icon" href="../../images/YM.ico" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <style>
+    :root{
+      --bg:#fafafa;--text:#4b5563;--heading:#1a1a2e;--muted:#9ca3af;
+      --link:#4a7f96;--warm:#b8854a;--border:rgba(0,0,0,0.08);--max-w:960px;
+    }
+    html.dark{
+      --bg:#0d1017;--text:#9ca3af;--heading:#c8cfd7;--muted:#5c6370;
+      --link:#6aacca;--warm:#d0a06a;--border:rgba(255,255,255,0.06);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);color:var(--text);
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      line-height:1.65;-webkit-font-smoothing:antialiased;
+      transition:background-color 180ms,color 180ms;
+    }
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+    
+    header{
+      display:flex;align-items:center;gap:14px;
+      padding:20px 0;border-bottom:1px solid var(--border);
+    }
+    .logo{width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0}
+    .logo img{width:100%;height:auto;display:block}
+    .hdr-name{font-size:1rem;font-weight:600;color:var(--heading)}
+    .hdr-tag{font-size:0.78rem;color:var(--muted);margin-top:1px}
+    .nav{display:flex;gap:4px;margin-left:auto;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .nav a,.nav button{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:30px;padding:0 8px;border-radius:5px;
+      color:var(--muted);font-size:0.82rem;
+      border:1px solid transparent;background:none;cursor:pointer;
+      transition:color 150ms;font-family:inherit;
+    }
+    .nav a:hover,.nav button:hover{color:var(--text);text-decoration:none}
+    .nav-sep{width:1px;height:14px;background:var(--border);margin:0 2px}
+
+    .post-header{
+      padding:48px 0 24px;
+      max-width:740px;
+      margin:0 auto;
+    }
+    .post-date{
+      display:inline-block;font-size:0.72rem;font-weight:600;
+      text-transform:uppercase;letter-spacing:0.04em;
+      color:var(--warm);margin-bottom:10px;
+    }
+    .post-header h1{
+      font-size:1.6rem;font-weight:600;color:var(--heading);
+      line-height:1.35;letter-spacing:-0.01em;
+    }
+    
+    .post-content{
+      max-width:740px;
+      margin:0 auto;
+      padding-bottom:48px;
+    }
+    .post-content p{
+      margin-top:16px;
+      text-align:justify;
+      text-align-last:left;
+    }
+    .post-content b, .post-content strong{color:var(--heading);font-weight:500}
+    .post-content u{text-decoration-color:var(--muted);text-underline-offset:2px}
+    
+    .post-content img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .embed-gif{
+      margin:24px 0;
+      overflow:hidden;
+    }
+    .embed-gif iframe {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    footer{padding:20px 0;border-top:1px solid var(--border);text-align:center;font-size:0.78rem;color:var(--muted)}
+    .to-top{
+      position:fixed;right:20px;bottom:20px;
+      width:32px;height:32px;border-radius:6px;
+      border:1px solid var(--border);background:var(--bg);
+      color:var(--muted);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;transition:opacity 150ms,color 150ms,z-index:100;
+    }
+    .to-top.show{opacity:1}
+    .to-top:hover{color:var(--link)}
+
+    @media(max-width:600px){header{flex-wrap:wrap}.nav{width:100%;margin-top:8px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0s!important}html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="../../images/YM.png" alt="YM"></div>
+      <div>
+        <div class="hdr-name">Yash Mathur</div>
+        <div class="hdr-tag">PhD Scholar, Computational Biologist, AI Enthusiast</div>
+      </div>
+      <nav class="nav" aria-label="Links">
+        <a href="../nav.html" title="All Posts">Musings</a>
+        <span class="nav-sep"></span>
+        <a href="../../index.html" title="Home"><i class="fas fa-arrow-left"></i></a>
+        <span class="nav-sep"></span>
+        <a href="https://www.linkedin.com/in/yash-mathur-b538262a/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://orcid.org/0000-0003-2753-0557" target="_blank" rel="noopener noreferrer" title="ORCID"><i class="fab fa-orcid"></i></a>
+        <a href="https://github.com/ym59" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:yash185973@st.jmi.ac.in" title="Email"><i class="fas fa-envelope"></i></a>
+        <button id="themeToggle" aria-pressed="true" title="Toggle theme">
+          <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+          <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="post-header">
+        <div class="post-date">[August 20, 2025]</div>
+        <h1>My Journey Writing a Review on AI in Drug Discovery</h1>
+      </div>
+
+      <article class="post-content">
+        <p>From the king to the ring, from the title to the thing! Each and every step of this process was grueling to say the least but still I loved it lol!</p>
+        
+        <p>It all began with an idea, an idea that really sounded unhinged now that I think about it...</p>
+
+        <img src="https://veno.es/mememe/wp-content/uploads/2017/10/mememe_bc4e6067636b93c3867579b6569a4cb9-1.jpg" alt="meme">
+
+        <p>To make a literature review of the entire workflow and pipeline that our lab follows, with newer additions in the form of AI. My fellow labmates and I were astounded, scratching their heads, trying to plan the perfect balance between bioinformatics and AI in literature. But then my PI, the supreme general, the high court, suggested we go all in on the AI part.</p>
+        
+        <p>So we went... oh boi</p>
+
+        <img src="https://content.imageresizer.com/images/memes/In-and-out-20-mins-meme-2.jpg" alt="meme">
+
+        <p>The plan was simple. Write a short, clean review on AI in drug discovery. Consolidate the latest advancements and provide a nice, readable overview. Little did we know that such a reasonable plan would turn into an eight-month intellectual marathon!</p>
+        
+        <p>The field is huge, and with the advancements in the tech field, it is further expanding. It feels like a hydras head, where one subdomain of the field spawns in 2 more sub-subdomains. To our own credit, we took the challenge head-on, instead of narrowing the focus of the review like some people suggested (looking at you redditors 0.0), we aimed to cover the entire landscape.</p>
+
+        <p>It was a reckless choice, yes, but one that we are proud of.</p>
+
+        <p>Searching the keywords "AI" and "drug discovery" retrived more than 50,000 results. Well nothing surprising there, to be very honest, since on the venn diagram of AI and drug discovery lies things like docking studies, simulation studies, energy calculations and more. As the first author of the article, it felt like the pressure was on me to decide what to take and what not to. The onus of selecting the most important topics, the most relevant research, and the best performing tools fell on my shoulders. Sifting through the retrived results was not an easy task, and sadly LLMs could not help me at all.</p>
+
+        <p>My daily routine took a huge plummet in terms of recreational activities. It felt like</p>
+
+        <div class="embed-gif">
+          <div class="tenor-gif-embed" data-postid="8902231" data-share-method="host" data-aspect-ratio="1.57895" data-width="100%"><a href="https://tenor.com/view/charlie-always-sunny-in-philadelphia-gif-8902231">Charlie Always GIF</a> from <a href="https://tenor.com/search/charlie-gifs">Charlie GIFs</a></div>
+          <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+
+        <p>every single day. I need to shoutout my main, <b>Obsidian</b> (obby in short, a name I <u>definitely</u> use ;] ). I had to setup a new vault with JUST rows and rows of research articles. Reading (no one can refute me because no one else "read" any) those was excruciating while also being very calming. I highlited the ones that felt nice, underlined the ones that were definitely going in the review article and left the ones that didn't make the cut, because all articles deserve love (except for the ones with unnecessary math or mumbojumbo jargon). Another shoutout goes to <b>ResearchRabbit</b>. This webserver was the reason I could easily connect dots, reading one article would lead to another and so on and so forth! The next thing I knew (it was all a blur; it is like fight club [<i>we do not talk about it</i>]) I was presenting the topics to my PI, asking for his approval on the articles and the story chosen.</p>
+
+        <p>Also <b>Endnote</b>. That single software saved me from losing my mind trying to compile all the sections and references.</p>
+
+        <p>One insight stood out as the reading pile grew. Excellence is not confined to glossy journals. Some of the most creative, rigorous work sat on <strong>arXiv</strong>, patiently waiting for peer review while already contributing meaningfully to the field.</p>
+
+        <p>There were no big cinematic breakthroughs here. Just many small wins. A better way to group the papers. A figure that finally made sense. A section that stopped sounding like a tax form. Slowly, the chaos turned into something coherent.</p>
+
+        <p>Looking back, the process was exhausting but strangely satisfying. It reminded me that science is as much about the architecture of thought as it is about the content itself.</p>
+      </article>
+    </main>
+
+    <footer>&copy; 2025 Yash Mathur</footer>
+  </div>
+
+  <button class="to-top" id="toTopBtn" aria-label="Back to top">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m0 0l-6 6m6-6l6 6"/></svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const r=document.documentElement,b=document.getElementById('themeToggle'),
+            s=document.getElementById('ico-sun'),m=document.getElementById('ico-moon'),
+            t=document.getElementById('toTopBtn'),
+            p=window.matchMedia('(prefers-color-scheme:light)').matches;
+      function set(v){
+        if(v==='light'){r.classList.remove('dark');b.setAttribute('aria-pressed','true');s.style.display='block';m.style.display='none';localStorage.setItem('t','light')}
+        else{r.classList.add('dark');b.setAttribute('aria-pressed','false');s.style.display='none';m.style.display='block';localStorage.setItem('t','dark')}
+      }
+      const sv=localStorage.getItem('t');sv?set(sv):set(p?'light':'dark');
+      b.addEventListener('click',()=>set(r.classList.contains('dark')?'light':'dark'));
+      const c=()=>{t.classList.toggle('show',window.scrollY>200)};
+      window.addEventListener('scroll',c,{passive:true});
+      t.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Story of PyPAn: Yash's Musings</title>
+  <meta name="description" content="What started off in 2020 as a Master's degree dissertation, ended up as a 500 Mb installable behemoth." />
+  <link rel="icon" href="../../images/YM.ico" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <style>
+    :root{
+      --bg:#fafafa;--text:#4b5563;--heading:#1a1a2e;--muted:#9ca3af;
+      --link:#4a7f96;--warm:#b8854a;--border:rgba(0,0,0,0.08);--max-w:960px;
+    }
+    html.dark{
+      --bg:#0d1017;--text:#9ca3af;--heading:#c8cfd7;--muted:#5c6370;
+      --link:#6aacca;--warm:#d0a06a;--border:rgba(255,255,255,0.06);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);color:var(--text);
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      line-height:1.65;-webkit-font-smoothing:antialiased;
+      transition:background-color 180ms,color 180ms;
+    }
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+    
+    header{
+      display:flex;align-items:center;gap:14px;
+      padding:20px 0;border-bottom:1px solid var(--border);
+    }
+    .logo{width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0}
+    .logo img{width:100%;height:auto;display:block}
+    .hdr-name{font-size:1rem;font-weight:600;color:var(--heading)}
+    .hdr-tag{font-size:0.78rem;color:var(--muted);margin-top:1px}
+    .nav{display:flex;gap:4px;margin-left:auto;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .nav a,.nav button{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:30px;padding:0 8px;border-radius:5px;
+      color:var(--muted);font-size:0.82rem;
+      border:1px solid transparent;background:none;cursor:pointer;
+      transition:color 150ms;font-family:inherit;
+    }
+    .nav a:hover,.nav button:hover{color:var(--text);text-decoration:none}
+    .nav-sep{width:1px;height:14px;background:var(--border);margin:0 2px}
+
+    .post-header{
+      padding:48px 0 24px;
+      max-width:740px;
+      margin:0 auto;
+    }
+    .post-date{
+      display:inline-block;font-size:0.72rem;font-weight:600;
+      text-transform:uppercase;letter-spacing:0.04em;
+      color:var(--warm);margin-bottom:10px;
+    }
+    .post-header h1{
+      font-size:1.6rem;font-weight:600;color:var(--heading);
+      line-height:1.35;letter-spacing:-0.01em;
+    }
+    
+    .post-content{
+      max-width:740px;
+      margin:0 auto;
+      padding-bottom:48px;
+    }
+    .post-content p{
+      margin-top:16px;
+      text-align:justify;
+      text-align-last:left;
+    }
+    .post-content b, .post-content strong{color:var(--heading);font-weight:500}
+    
+    .post-content img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .img-row {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      align-items: center;
+    }
+    .img-row img {
+      flex: 1;
+      margin: 0;
+      max-height: 280px;
+      width: auto;
+      object-fit: contain;
+      border: none;
+      border-radius: 0;
+    }
+
+    .embed-gif{
+      margin:24px 0;
+      overflow:hidden;
+    }
+    .embed-gif iframe {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .caption {
+      display: block;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: -12px;
+      margin-bottom: 16px;
+    }
+
+    footer{padding:20px 0;border-top:1px solid var(--border);text-align:center;font-size:0.78rem;color:var(--muted)}
+    .to-top{
+      position:fixed;right:20px;bottom:20px;
+      width:32px;height:32px;border-radius:6px;
+      border:1px solid var(--border);background:var(--bg);
+      color:var(--muted);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;transition:opacity 150ms,color 150ms,z-index:100;
+    }
+    .to-top.show{opacity:1}
+    .to-top:hover{color:var(--link)}
+
+    @media(max-width:600px){
+      header{flex-wrap:wrap}.nav{width:100%;margin-top:8px}
+      .img-row{flex-direction:column;gap: 12px;}
+      .img-row img {max-height: 220px;}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0s!important}html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="../../images/YM.png" alt="YM"></div>
+      <div>
+        <div class="hdr-name">Yash Mathur</div>
+        <div class="hdr-tag">PhD Scholar, Computational Biologist, AI Enthusiast</div>
+      </div>
+      <nav class="nav" aria-label="Links">
+        <a href="../nav.html" title="All Posts">Musings</a>
+        <span class="nav-sep"></span>
+        <a href="../../index.html" title="Home"><i class="fas fa-arrow-left"></i></a>
+        <span class="nav-sep"></span>
+        <a href="https://www.linkedin.com/in/yash-mathur-b538262a/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://orcid.org/0000-0003-2753-0557" target="_blank" rel="noopener noreferrer" title="ORCID"><i class="fab fa-orcid"></i></a>
+        <a href="https://github.com/ym59" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:yash185973@st.jmi.ac.in" title="Email"><i class="fas fa-envelope"></i></a>
+        <button id="themeToggle" aria-pressed="true" title="Toggle theme">
+          <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+          <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="post-header">
+        <div class="post-date">[May 15, 2022]</div>
+        <h1>Longest running dissertation probably ever</h1>
+      </div>
+
+      <article class="post-content">
+        <p>What started off in 2020 as my Master's degree dissertation, ended up as a 500 Mb installable behemoth!</p>
+
+        <p>The story of PyPAn is of passion, glory, coffee breaks, InstaDock (wait, huh?), and none of that. It is just another run of the mill protein analysis tool that I created while I was experimenting with frameworks to use for InstaDock.</p>
+
+        <p>It began its life as a dissertation project: a tiny Django web app named <a href="https://github.com/ym59/mmat">MMAT</a> that simply advised users on which protein structure modeling method to use. Homology, threading, or ab initio, MMAT gave sensible recommendations based on the input sequence and quietly went back to sleep. It worked. But it wasn’t enough to get any publication, it needed some oomff (if not novelty).</p>
+
+        <p>Real protein analysis workflows are messy. Researchers rarely need one neat answer. They need to stitch together multiple tools, check properties, align sequences, analyze structures, and somehow keep their sanity. So I did what most developers do at this point. I overbuilt it. No regrets though ;)</p>
+
+        <div class="img-row">
+          <img src="https://c.tenor.com/2P4z-sF3n0UAAAAd/tenor.gif" alt="no regrets meme">
+          <img src="https://supermeme-space-prd.ams3.cdn.digitaloceanspaces.com/templates/Dab-crying.png" alt="dab crying meme">
+        </div>
+
+        <p>Okay, I do feel that this tool rather than being something that everyone uses, is something that let me learn a lot of things!</p>
+
+        <p>The central idea was simple: put the most common protein analysis steps in one place and save users the pain of opening ten different tools. So just random things go would not work (I know, I tried doing that...), I needed a coherent story to tell with this project/tool. Asked my PI for anyting they could help me with, like things in the lab that could be automated, simplified or even created. His answer was simple, the lab and many other people need a software that comprehensively helps with protein analysis.</p>
+
+        <div class="embed-gif">
+          <div class="tenor-gif-embed" data-postid="8930645693082954592" data-share-method="host" data-aspect-ratio="0.691244" data-width="100%"><a href="https://tenor.com/view/cat-meme-cat-salute-aye-aye-captain-aye-aye-gif-8930645693082954592">Cat Meme Salute GIF</a> from <a href="https://tenor.com/search/cat+meme-gifs">Cat Meme GIFs</a></div>
+          <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+        <span class="caption">(Legit reaction, circa 2022)</span>
+
+        <p>The toolkit expanded fast. Sequence analysis uses <strong>Biopython</strong> to calculate a dozen physicochemical properties. Multiple sequence alignment runs through a <strong>Clustal-O</strong> wrapper. Structural analysis generates Ramachandran plots and calculates solvent accessibility and radius of gyration. All these parts lived under one roof, wrapped in a clean GUI that didn’t require users to touch the command line.</p>
+
+        <p>Writing the underlying logic was the easy part. Making it accessible through a friendly interface was the real test. GUI design in scientific software is often treated as an afterthought, but here it became the backbone. I wanted PyPAn to feel approachable even to those who are more comfortable pipetting than programming. The application was designed to guide users through logical workflows rather than dumping all features at once. It was less "choose your own adventure" and more "follow the breadcrumbs to get results".</p>
+
+        <p>But damn,</p>
+
+        <img src="../../images/9e5d3421-0268-40bf-8088-dd540a67c4ea.jpg" alt="meme">
+
+        <p>PyPAn was practical, useful, and <b>reasonably</b> stable. But publishing a software tool that is an integrator rather than an entirely new algorithm is a different kind of challenge. Reviewers loved the utility but questioned its novelty. It collected rejections like trading cards before finally landing at a journal that valued what it offered: a unified, user-friendly protein analysis platform.</p>
+
+        <p>Scientific software doesn’t always need to reinvent algorithms. Sometimes it just needs to make them easier to use.</p>
+
+        <p>In many ways, PyPAn taught me more about scientific communication than about coding. Building something is one skill. Convincing the world it matters is another entirely. This is a rant for another time though...</p>
+      </article>
+    </main>
+
+    <footer>&copy; 2025 Yash Mathur</footer>
+  </div>
+
+  <button class="to-top" id="toTopBtn" aria-label="Back to top">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m0 0l-6 6m6-6l6 6"/></svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const r=document.documentElement,b=document.getElementById('themeToggle'),
+            s=document.getElementById('ico-sun'),m=document.getElementById('ico-moon'),
+            t=document.getElementById('toTopBtn'),
+            p=window.matchMedia('(prefers-color-scheme:light)').matches;
+      function set(v){
+        if(v==='light'){r.classList.remove('dark');b.setAttribute('aria-pressed','true');s.style.display='block';m.style.display='none';localStorage.setItem('t','light')}
+        else{r.classList.add('dark');b.setAttribute('aria-pressed','false');s.style.display='none';m.style.display='block';localStorage.setItem('t','dark')}
+      }
+      const sv=localStorage.getItem('t');sv?set(sv):set(p?'light':'dark');
+      b.addEventListener('click',()=>set(r.classList.contains('dark')?'light':'dark'));
+      const c=()=>{t.classList.toggle('show',window.scrollY>200)};
+      window.addEventListener('scroll',c,{passive:true});
+      t.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    });
+  </script>
+</body>
+</html>
