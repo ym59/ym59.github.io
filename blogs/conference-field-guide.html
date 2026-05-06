@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Conference Bingo: A Five-Day Field Guide: Yash's Musings</title>
+  <meta name="description"
+    content="The bingo card from a five-day AI for Structural Biology conference — universal squares, only-at-this-conference squares, and a full blackout." />
+  <link rel="icon" href="../../images/YM.ico" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #fafafa;
+      --text: #4b5563;
+      --heading: #1a1a2e;
+      --muted: #9ca3af;
+      --link: #4a7f96;
+      --warm: #b8854a;
+      --border: rgba(0, 0, 0, 0.08);
+      --max-w: 960px
+    }
+
+    html.dark {
+      --bg: #0d1017;
+      --text: #9ca3af;
+      --heading: #c8cfd7;
+      --muted: #5c6370;
+      --link: #6aacca;
+      --warm: #d0a06a;
+      --border: rgba(255, 255, 255, 0.06)
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 180ms, color 180ms
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      display: block
+    }
+
+    .hdr-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--heading)
+    }
+
+    .hdr-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 1px
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end
+    }
+
+    .nav a,
+    .nav button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      padding: 0 8px;
+      border-radius: 5px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border: 1px solid transparent;
+      background: none;
+      cursor: pointer;
+      transition: color 150ms;
+      font-family: inherit
+    }
+
+    .nav a:hover,
+    .nav button:hover {
+      color: var(--text);
+      text-decoration: none
+    }
+
+    .nav-sep {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+      margin: 0 2px
+    }
+
+    .post-header {
+      padding: 48px 0 24px;
+      max-width: 740px;
+      margin: 0 auto
+    }
+
+    .post-date {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--warm);
+      margin-bottom: 10px
+    }
+
+    .post-header h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--heading);
+      line-height: 1.35;
+      letter-spacing: -0.01em
+    }
+
+    .post-content {
+      max-width: 740px;
+      margin: 0 auto;
+      padding-bottom: 48px
+    }
+
+    .post-content p {
+      margin-top: 16px;
+      text-align: justify;
+      text-align-last: left
+    }
+
+    .post-content b,
+    .post-content strong {
+      color: var(--heading);
+      font-weight: 500
+    }
+
+    .post-content img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border)
+    }
+
+    .post-content h2 {
+      margin-top: 36px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--heading)
+    }
+
+    .post-content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0
+    }
+
+    .postscript {
+      margin-top: 2px;
+      font-size: 0.85rem;
+      color: var(--muted)
+    }
+
+    .bingo-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.82rem
+    }
+
+    .bingo-table th,
+    .bingo-table td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: center
+    }
+
+    .bingo-table th {
+      background: var(--warm);
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em
+    }
+
+    .bingo-table td {
+      color: var(--text)
+    }
+
+    footer {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted)
+    }
+
+    .to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 150ms, color 150ms;
+      z-index: 100
+    }
+
+    .to-top.show {
+      opacity: 1
+    }
+
+    .to-top:hover {
+      color: var(--link)
+    }
+
+    @media(max-width:600px) {
+      header {
+        flex-wrap: wrap
+      }
+
+      .nav {
+        width: 100%;
+        margin-top: 8px
+      }
+
+      .bingo-table {
+        font-size: 0.72rem
+      }
+
+      .bingo-table td,
+      .bingo-table th {
+        padding: 5px 4px
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0s !important
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="../../images/YM.png" alt="YM"></div>
+      <div>
+        <div class="hdr-name">Yash Mathur</div>
+        <div class="hdr-tag">PhD Scholar, Computational Biologist, AI Enthusiast</div>
+      </div>
+      <nav class="nav" aria-label="Links">
+        <a href="../nav.html" title="All Posts">Musings</a>
+        <span class="nav-sep"></span>
+        <a href="../../index.html" title="Home"><i class="fas fa-arrow-left"></i></a>
+        <span class="nav-sep"></span>
+        <a href="https://www.linkedin.com/in/yash-mathur-b538262a/" target="_blank" rel="noopener noreferrer"
+          title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://orcid.org/0000-0003-2753-0557" target="_blank" rel="noopener noreferrer" title="ORCID"><i
+            class="fab fa-orcid"></i></a>
+        <a href="https://github.com/ym59" target="_blank" rel="noopener noreferrer" title="GitHub"><i
+            class="fab fa-github"></i></a>
+        <a href="mailto:yash185973@st.jmi.ac.in" title="Email"><i class="fas fa-envelope"></i></a>
+        <button id="themeToggle" aria-pressed="true" title="Toggle theme">
+          <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
+          </svg>
+          <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="post-header">
+        <div class="post-date">[May 2, 2026]</div>
+        <h1>Conference Bingo: A Five-Day Field Guide to AI for Structural Biology</h1>
+      </div>
+
+      <article class="post-content">
+        <p>Two coffee breaks a day, each doubling as a poster session: the caffeine-to-science ratio was engineered with
+          more precision than anything on the slides.</p>
+
+        <p>Every conference has a secret operating system. Not the schedule. Not the agenda. The real one: the rituals,
+          the recurring phenomena, the universal behaviors that happen whether the topic is protein folding or particle
+          physics. Attend enough of these and you start to spot the patterns. So here is the bingo card. Some squares
+          are universal. Some could only have happened here. All of them got stamped.</p>
+
+        <hr>
+
+        <h2>The Universal Squares (You Could Bet Your Stipend On These)</h2>
+
+        <p><b>"Can everyone see the back row?",</b> asked while projecting text sized for ants. Every single time. The
+          font never gets bigger. The back row never says yes.</p>
+
+        <p><b>The Great Power Outlet Migration.</b> By hour two, half the audience has silently relocated based on
+          proximity to charging ports. Science follows the current. Literally.</p>
+
+        <p><b>Post-Lunch Attention Collapse.</b> Notes from morning sessions: detailed equations, beautifully formatted
+          bullet points. Notes from 2 PM onward: "something about attention??" and a suspiciously detailed doodle.</p>
+
+        <p><b>The Nodding Chorus.</b> A speaker puts up a dense mathematical proof. The room nods in perfect unison.
+          Nobody will admit later that they understood about 40% of it.</p>
+
+        <p><b>"I'll skip this slide in the interest of time"</b> — said while lingering on it for a full ninety seconds.
+          We have all done it. We will all do it again.</p>
+
+        <p><b>One Person Asks a Question That Is Actually a Talk.</b> "This is more of a comment than a question" is
+          conference code for "buckle up, I have slides in my head."</p>
+
+        <p><b>The Hallway Conversation That Was Better Than a Talk.</b> You know the one. Two people standing near the
+          coffee table, casually solving a problem that three slides failed to explain. This happened at least once a
+          day. Minimum.</p>
+
+        <hr>
+
+        <h2>The "Only at THIS Conference" Squares</h2>
+
+        <p><b>The conference was billed as AI for structural biology. Day 1 was pure AI.</b> The biology, presumably,
+          was still in transit. Three back-to-back talks on LLMs, GNNs, and agentic workflows before a single protein
+          was mentioned. Nobody acknowledged this. Everyone noticed. I appreciated.</p>
+
+        <p><b>The Great Halwa Debate of 2026.</b> At some point during a break, the conversation shifted from protein
+          folding to the philosophical question of whether halwa is essentially the same as cake — a broad categorical
+          term that encompasses many forms. This was discussed with the same academic rigor as anything on the schedule.
+          No consensus was reached. The debate remains open.</p>
+
+        <p><b>Geoffrey Smith could not catch a break.</b> He demoed BoltzLab and the entire room collectively decided he
+          was now their personal tech support. Every coffee break, every lunch, every hallway crossing — someone had
+          their laptop out, asking him something. The man had his hands full at all times. If there was a bingo square
+          for "speaker who never got to eat in peace," Geoffrey had it stamped on Day 1 and never looked back.</p>
+
+        <p><b>"Attention" appeared in every single talk on Day 1.</b> Every. Single. One. Doing every possible job. If
+          it is the answer to every question, are we even asking different questions?</p>
+
+        <p><b>A speaker's background had nothing to do with RL and he gave the best RL talk.</b> Prof. Arnab Mukherjee
+          explained the frozen lake scenario with such depth and infectious enthusiasm that for a hot second, I
+          genuinely believed I could navigate one using a stochastic policy. Conference magic is when the outsider
+          steals the show.</p>
+
+        <p class="postscript">P.S. Still not risking the frozen lake in real life. (Have dealt with it a lot in Pokemon
+          games. Never turns out well.)</p>
+
+        <p><b>Someone made inference sound like a buddy cop movie.</b> A giant LLM paired with a smaller, faster SLM
+          doing speculative decoding together. It is Goku and Vegeta fusing into Gogeta, except the stakes are token
+          latency.</p>
+
+        <div class="tenor-gif-embed" data-postid="19890927" data-share-method="host" data-aspect-ratio="1.81818"
+          data-width="100%"><a href="https://tenor.com/view/gotenks-goten-fusion-gif-19890927">Gotenks Fusion
+            GIF</a>from <a href="https://tenor.com/search/gotenks-gifs">Gotenks GIFs</a></div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+        <hr>
+
+        <h2>The Free Space (This One Is Guaranteed)</h2>
+
+        <p><b>Someone used the phrase "attention is all you need" as a pun and thought they were the first.</b> (Dare I
+          say, attention was all you needed that day?) I am someone. I am not sorry.</p>
+
+        <hr>
+
+        <h2>The Final Count</h2>
+
+        <p><b>Confirmed bingo squares from five days:</b></p>
+
+        <table class="bingo-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>B</th>
+              <th>I</th>
+              <th>N</th>
+              <th>G</th>
+              <th>O</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1</b></td>
+              <td>Power outlet hunt</td>
+              <td>Font too small</td>
+              <td>Post-lunch collapse</td>
+              <td>Nodding chorus</td>
+              <td>"Skip this slide"</td>
+            </tr>
+            <tr>
+              <td><b>2</b></td>
+              <td>Question that's a talk</td>
+              <td>Day 1: all AI, zero biology</td>
+              <td>The Great Halwa Debate</td>
+              <td>Geoffrey never ate in peace</td>
+              <td>"Attention" everywhere</td>
+            </tr>
+            <tr>
+              <td><b>3</b></td>
+              <td>Hallway &gt; talk</td>
+              <td>Buddy cop inference</td>
+              <td>FREE SPACE</td>
+              <td>RL from a non-RL person</td>
+              <td>Proteins as Shakespeare</td>
+            </tr>
+            <tr>
+              <td><b>4</b></td>
+              <td>Coffee &gt; slides</td>
+              <td>Pokemon frozen lake</td>
+              <td>Doodle quality &gt; note quality</td>
+              <td>Obsidian vault, not notebook</td>
+              <td>Desperate need for nap</td>
+            </tr>
+            <tr>
+              <td><b>5</b></td>
+              <td>"Go back two slides?"</td>
+              <td>Live demo actually worked</td>
+              <td>WiFi password hunt</td>
+              <td>Someone's phone rang</td>
+              <td>Presenter ran out of time</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><b>Result:</b> Full card. Blackout bingo. Five days, every square stamped.</p>
+
+        <hr>
+
+        <div class="tenor-gif-embed" data-postid="20981309" data-share-method="host" data-aspect-ratio="1.33333"
+          data-width="100%"><a
+            href="https://tenor.com/view/rutogalore-batman-thinking-contemplating-hmm-gif-20981309">Rutogalore Batman
+            GIF</a>from <a href="https://tenor.com/search/rutogalore-gifs">Rutogalore GIFs</a></div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        <p class="postscript">P.S. To fold or not to fold, that is the question.</p>
+
+        <p>Treating amino acid sequences as language is such a beautiful concept. Shruthi Viswanath and her group closed
+          out the conference by showing how we moved from basic n-gram models (which lost context faster than I lose my
+          keys — still doubt any AI can match my efficiency at losing things) to absolute powerhouse transformers like
+          ESM2. If proteins are sentences, these models are writing Shakespeare.</p>
+
+        <p>This conference was a whirlwind of brilliant minds, complex architectures, and an alarming amount of coffee.
+          I am leaving with an Obsidian vault full of ideas, a brain full of gradients, and a desperate need for a nap.
+        </p>
+
+        <p>The bingo card is full. See you at the next one. (Also DO NOT CALL ME AN RNN just because I have a shorter
+          memory span. It's not a personality trait, ok?)</p>
+      </article>
+    </main>
+
+    <footer>&copy; 2025 Yash Mathur</footer>
+  </div>
+
+  <button class="to-top" id="toTopBtn" aria-label="Back to top">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5m0 0l-6 6m6-6l6 6" />
+    </svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const r = document.documentElement, b = document.getElementById('themeToggle'),
+        s = document.getElementById('ico-sun'), m = document.getElementById('ico-moon'),
+        t = document.getElementById('toTopBtn'),
+        p = window.matchMedia('(prefers-color-scheme:light)').matches;
+      function set(v) {
+        if (v === 'light') { r.classList.remove('dark'); b.setAttribute('aria-pressed', 'true'); s.style.display = 'block'; m.style.display = 'none'; localStorage.setItem('t', 'light') }
+        else { r.classList.add('dark'); b.setAttribute('aria-pressed', 'false'); s.style.display = 'none'; m.style.display = 'block'; localStorage.setItem('t', 'dark') }
+      }
+      const sv = localStorage.getItem('t'); sv ? set(sv) : set(p ? 'light' : 'dark');
+      b.addEventListener('click', () => set(r.classList.contains('dark') ? 'light' : 'dark'));
+      const c = () => { t.classList.toggle('show', window.scrollY > 200) };
+      window.addEventListener('scroll', c, { passive: true });
+      t.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    });
+  </script>
+</body>
+
+</html>

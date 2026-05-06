@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Notes That Survived: Sorting Signal from Atmosphere: Yash's Musings</title>
+  <meta name="description"
+    content="A thoughtful sorting of five days of conference notes on LLMs, GNNs, agentic AI, structural biology, reinforcement learning, and protein language models — the signal that survived the atmosphere." />
+  <link rel="icon" href="../../images/YM.ico" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #fafafa;
+      --text: #4b5563;
+      --heading: #1a1a2e;
+      --muted: #9ca3af;
+      --link: #4a7f96;
+      --warm: #b8854a;
+      --border: rgba(0, 0, 0, 0.08);
+      --max-w: 960px;
+    }
+
+    html.dark {
+      --bg: #0d1017;
+      --text: #9ca3af;
+      --heading: #c8cfd7;
+      --muted: #5c6370;
+      --link: #6aacca;
+      --warm: #d0a06a;
+      --border: rgba(255, 255, 255, 0.06);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 180ms, color 180ms;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      display: block
+    }
+
+    .hdr-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--heading)
+    }
+
+    .hdr-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 1px
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end
+    }
+
+    .nav a,
+    .nav button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      padding: 0 8px;
+      border-radius: 5px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border: 1px solid transparent;
+      background: none;
+      cursor: pointer;
+      transition: color 150ms;
+      font-family: inherit;
+    }
+
+    .nav a:hover,
+    .nav button:hover {
+      color: var(--text);
+      text-decoration: none
+    }
+
+    .nav-sep {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+      margin: 0 2px
+    }
+
+    .post-header {
+      padding: 48px 0 24px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .post-date {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--warm);
+      margin-bottom: 10px;
+    }
+
+    .post-header h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--heading);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .post-content {
+      max-width: 740px;
+      margin: 0 auto;
+      padding-bottom: 48px;
+    }
+
+    .post-content p {
+      margin-top: 16px;
+      text-align: justify;
+      text-align-last: left;
+    }
+
+    .post-content b,
+    .post-content strong {
+      color: var(--heading);
+      font-weight: 500
+    }
+
+    .post-content img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .img-row {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      align-items: center;
+    }
+
+    .img-row img {
+      flex: 1;
+      margin: 0;
+      max-height: 280px;
+      width: auto;
+      object-fit: contain;
+      border: none;
+      border-radius: 0;
+    }
+
+    .postscript {
+      margin-top: 2px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted)
+    }
+
+    .to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 150ms, color 150ms, z-index:100;
+    }
+
+    .to-top.show {
+      opacity: 1
+    }
+
+    .to-top:hover {
+      color: var(--link)
+    }
+
+    @media(max-width:600px) {
+      header {
+        flex-wrap: wrap
+      }
+
+      .nav {
+        width: 100%;
+        margin-top: 8px
+      }
+
+      .img-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .img-row img {
+        max-height: 220px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0s !important
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="../../images/YM.png" alt="YM"></div>
+      <div>
+        <div class="hdr-name">Yash Mathur</div>
+        <div class="hdr-tag">PhD Scholar, Computational Biologist, AI Enthusiast</div>
+      </div>
+      <nav class="nav" aria-label="Links">
+        <a href="../nav.html" title="All Posts">Musings</a>
+        <span class="nav-sep"></span>
+        <a href="../../index.html" title="Home"><i class="fas fa-arrow-left"></i></a>
+        <span class="nav-sep"></span>
+        <a href="https://www.linkedin.com/in/yash-mathur-b538262a/" target="_blank" rel="noopener noreferrer"
+          title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://orcid.org/0000-0003-2753-0557" target="_blank" rel="noopener noreferrer" title="ORCID"><i
+            class="fab fa-orcid"></i></a>
+        <a href="https://github.com/ym59" target="_blank" rel="noopener noreferrer" title="GitHub"><i
+            class="fab fa-github"></i></a>
+        <a href="mailto:yash185973@st.jmi.ac.in" title="Email"><i class="fas fa-envelope"></i></a>
+        <button id="themeToggle" aria-pressed="true" title="Toggle theme">
+          <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
+          </svg>
+          <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="post-header">
+        <div class="post-date">[May 3, 2026]</div>
+        <h1>The Notes That Survived: Sorting Signal from Atmosphere</h1>
+      </div>
+
+      <article class="post-content">
+        <p>After a five-day conference, your notebook looks less like a record of learning and more like the diary of a
+          madman. There are arrows pointing nowhere. There are heavily underlined acronyms you no longer recognize.
+          There is a doodle of a remarkably stressed-looking cat.</p>
+
+        <div class="tenor-gif-embed" data-postid="15455068164842202481" data-share-method="host" data-aspect-ratio="1"
+          data-width="100%"><a
+            href="https://tenor.com/view/cat-cat-meme-stressed-cat-banana-cat-gif-15455068164842202481">Cat Cat Meme
+            GIF</a>from <a href="https://tenor.com/search/cat-gifs">Cat GIFs</a></div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        <p class="postscript">P.S. Why do we always draw cats during deep learning talks?</p>
+
+        <p>The truth about conferences is that not all notes are created equal. The vast majority of what you write down
+          is just atmosphere. It is the feeling of being in a room with smart people. But once the caffeine wears off
+          and you are sitting at your desk, you have to separate the signal from the noise. This is not a recap. This is
+          a thoughtful sorting exercise. These are the notes that survived.</p>
+        </br>
+
+        <h3>The Elegance of Tandem Transformers</h3>
+        <div class="speaker">Speaker: Praneeth Netrapalli</div>
+
+        <p>We are all currently obsessed with making models exponentially bigger, but the real elegance lies in making
+          them smarter about how they compute. Netrapalli opened with a deceptively clean framing: LLMs are conditional
+          generative models. You give them a prompt, they generate from a conditional distribution. That is it.
+          Everything else is engineering.</p>
+
+        <p>The architecture itself is four stacked components: an embedding layer that tokenizes input, transformer
+          blocks with attention layers, transformer blocks with feed-forward layers, and a loss function that produces
+          probabilistic output. The attention mechanism is where things get interesting. Given an input token, three
+          parameter matrices (Query, Key, Value) work together so that future tokens attend to all past tokens and
+          update their representations accordingly. It is, at its core, a mechanism for letting every part of a sentence
+          gossip with every other part.</p>
+
+        <p>But the note that survived from this talk was not the architecture. It was the economics. Training is a
+          one-time cost. Inference is a continuous cost. And autoregressive generation, the way these models actually
+          produce text, forces you into sequential matrix-vector multiplications. You cannot parallelise your way out of
+          it. That is the real bottleneck.</p>
+
+        <p>Netrapalli introduced two approaches to this problem. The first, <b>HIRE</b>, attacks activation sparsity.
+          The key insight is that latency is not compute-bound but memory-bound: the bottleneck is transferring weights
+          from RAM to cache. So instead of dumping the entire weight matrix, you transfer only the top-k most relevant
+          values. They apply this approximation to both the softmax layer and the feed-forward layers, and the results
+          held up.</p>
+
+        <p>The second approach was <b>Tandem Transformers</b>, and this is where it got genuinely elegant. Decoding
+          (generation) is far more expensive than encoding (understanding). So you take a large language model and a
+          small language model, project the encodings of the LLM into the SLM, and let the smaller model handle the
+          expensive autoregressive generation. In their experiments with PaLM2 (using the Gecko, Otter, and Bison size
+          variants), tandem distillation made the pipeline both fast and, crucially, accurate enough to be usable.</p>
+
+        <p>Then comes speculative decoding: the SLM drafts tokens, and the primary LLM acts as a verifier. If the SLM
+          gets a token wrong, the LLM backtracks, corrects it, and restarts. It is basically the architectural
+          equivalent of having an intern draft your emails while you just approve them.</p>
+
+        <div class="tenor-gif-embed" data-postid="15410005780506284769" data-share-method="host"
+          data-aspect-ratio="1.21463" data-width="100%"><a
+            href="https://tenor.com/view/the-office-michael-scott-the-office-memes-michael-neuvifuri-gif-15410005780506284769">The
+            Office Michael Scott GIF</a>from <a href="https://tenor.com/search/the+office-gifs">The Office GIFs</a>
+        </div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        <p class="postscript">P.S. Delegation is a true art form.</p></br>
+
+        <h3>The Limits of Local Reasoning</h3>
+        <div class="speaker">Speaker: Seema Nagar</div>
+
+        <p>When you represent data as a graph, the first question is deceptively simple: how do you learn from the
+          structure? Nagar walked through this systematically, starting from the adjacency matrix (just zeros and ones
+          for an unweighted graph) and building up.</p>
+
+        <p><b>Graph Convolutional Networks (GCNs)</b> aggregate information from local neighbours with shared,
+          normalised weights. They average information from immediate neighbours, with normalisation to prevent
+          high-degree nodes from dominating. They work well when nearby structure is the main signal. <b>Graph Attention
+            Networks (GATs)</b> take this further by learning which local neighbours actually matter using attention
+          weights. Instead of treating all neighbours equally, important neighbours contribute more strongly to the node
+          update. It is honestly a lot like knowing which of your friends to actually listen to when they give advice.
+        </p>
+
+        <p><b>Graph Transformers</b> go further still: global attention so that distant nodes can interact directly,
+          bypassing the local neighbourhood entirely.</p>
+
+        <p>But the limitation that stuck with me was <b>oversmoothing</b>. Deep GNNs make all nodes look similar.
+          Information from distant nodes gets diluted. You are effectively limited to three to five layers before
+          everything collapses into a mathematical echo chamber. Traditional GNNs simply do not have global receptive
+          fields.</p>
+
+        <p><b>Graphormers</b> address this with three clever additions: centrality encoding to capture each node's
+          importance in the graph, spatial encoding using shortest-path distances added as bias in attention, and edge
+          encoding that handles multiple edge types by averaging edge features along shortest paths.</p>
+
+        <p>The discussion on dynamic graphs was where things got genuinely forward-looking. Nodes and edges can change
+          over time. When the topology is fixed and only signals change, you combine a static GNN with a sequence model:
+          the spatial component (GCN) extracts structural features at each time step, while the temporal component (RNN,
+          LSTM) processes the sequence to capture trends. When the topology itself evolves and new nodes or edges
+          appear, you move to either discrete-time snapshots or continuous-time streams with memory-based GNNs that
+          maintain state for each node.</p>
+
+        <p>The foundational models section was a glimpse of the field's ambitions. <b>UniGraph</b>, a cross-domain model
+          for text-attributed graphs, combines graph structure with text semantics using a Text Encoder and Graph
+          Encoder fused into a unified representation. <b>MolFM</b> goes further, combining molecular structure,
+          biomedical text, and knowledge graphs, pretrained using structure-text contrastive loss, cross-modal matching,
+          and masked language modelling, and then fine-tuned for specific drug discovery tasks with limited data.</p>
+
+        <p>You cannot just look at your immediate neighbours if you want to understand the whole network. That was the
+          surviving note.</p></br>
+
+        <h3>The Human Problem of AI Context</h3>
+        <div class="speaker">Speaker: Prateeti Mohapatra</div>
+
+        <p>Mohapatra mapped the entire trajectory from basic prompt engineering to full multi-agent systems in a single
+          talk, and the clarity of the progression was the most valuable part. The pipeline is: LLM, then prompt
+          engineering, then RAG, then Agentic AI, then Multi-agent.</p>
+
+        <p>Prompt engineering is, by her own framing, a process of trial and error with no guarantee of consistent
+          outputs. Zero-shot prompting, few-shot prompting with in-context learning. It works. But it is fundamentally
+          unpredictable. <b>RAG</b> (Retrieval Augmented Generation) adds external knowledge retrieval to ground the
+          model. Then you move into workflows: predictable execution with linear sequences and deterministic tasks (easy
+          debugging), versus flexible decision making where the LLM decides next steps for open-ended tasks (complex
+          debugging).</p>
+
+        <p>The <b>ReAct framework</b> (Reason and Act) and the <b>Agent2Agent protocol</b> got mentions, along with the
+          distinction between MCP (used internally within an agent) and A2A (used for inter-agent communication). But
+          the most fascinating takeaway was not any of these protocols. It was the terminology around context
+          management.</p>
+
+        <p>Long context windows lead to <b>context poisoning</b>, <b>context distraction</b>, <b>context confusion</b>,
+          and <b>context clash</b>. Four failure modes. One slide. When your breakage has its own taxonomy, you have
+          moved past denial and into interior design. It turns out that giving an AI too much information causes exactly
+          the same problems it causes in humans.</p>
+
+        <img src="https://i.kym-cdn.com/entries/icons/original/000/021/464/14608107_1180665285312703_1558693314_n.jpg"
+          alt="math lady confused meme"></br>
+
+        <h3>Knowing the Boundary of the Tool</h3>
+        <div class="speaker">Speaker: Joseph Ellaway</div>
+
+        <p>We tend to treat structural biology tools like AlphaFold as magic wands. Ellaway was brilliantly precise
+          about what they actually do, and more importantly, what they cannot.</p>
+
+        <p>The pipeline itself is impressive: MSA plus structure databases feed into 48 Evoformer blocks of deep
+          learning, producing atomic coordinates and a suite of confidence scores. <b>pLDDT</b> for local accuracy,
+          rewarding locally correct structures. <b>PAE</b> for pairwise representation, giving you a value for every
+          residue pair where colour indicates expected position error if predicted and true structures were aligned on
+          any residue. <b>ipTM</b> for overall confidence. <b>pDockQ</b> for docking quality. Clash scores. The
+          confidence infrastructure is almost as sophisticated as the prediction itself.</p>
+
+        <p>The <b>3D-beacons network</b> represents an open collaboration for programmatic access to both experimentally
+          determined and predicted structure models. <b>OpenFold</b> is the trainable PyTorch reproduction of AlphaFold
+          2, putting the architecture into the hands of researchers who want to actually modify it rather than just use
+          it.</p>
+
+        <p>But the surviving note from this talk was the three clean limitations. AlphaFold can only accept the 20
+          standard amino acids. It cannot predict conformational variability. And it fails to predict the effects of
+          point mutations. Three sentences that define the exact boundary of the tool. Knowing that boundary is
+          precisely what makes it useful.</p>
+
+        <div class="tenor-gif-embed" data-postid="7713620" data-share-method="host" data-aspect-ratio="1.77863"
+          data-width="100%"><a href="https://tenor.com/view/smart-thinking-thoughts-think-ponder-gif-7713620">Smart
+            Thinking GIF</a>from <a href="https://tenor.com/search/smart-gifs">Smart GIFs</a></div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        <p class="postscript">P.S. You cannot be disappointed by a model if you perfectly understand its limitations.
+        </p></br>
+
+        <h3>The Anxiety of the Unknown</h3>
+        <div class="speaker">Speaker: Arnab Mukherjee</div>
+
+        <p>This was, without exaggeration, one of the most enjoyable talks of the entire conference, and Mukherjee's
+          background is not even in reinforcement learning. His infectious enthusiasm and incredibly creative outlook
+          turned what could have been a textbook lecture into something genuinely brilliant.</p>
+
+        <p><b>Reinforcement Learning</b> is fundamentally about sequential decision making under uncertainty. Data comes
+          as state-action pairs. The goal is to maximise future reward over many steps. You take an action, you alter
+          the state of the world, and you might not see the reward until much later. The Bellman equation is just a very
+          rigorous way of dealing with the anxiety of the unknown.</p>
+
+        <p>The <b>Markov Decision Process</b> framework makes this concrete. Given any state, the agent takes an action,
+          transitions to a new state, and receives a reward. The Markov property says the future depends only on the
+          current state and action, not on the entire history. A trajectory is a sequence of rewards stretching into the
+          future. Tasks can be episodic (with a clear end) or non-episodic (continuing indefinitely).</p>
+
+        <p>The fundamental challenges are clean and sobering. Sequential feedback: a decision now can impact outcomes
+          much later. Evaluative feedback: you do not know if something works unless you try it. Sampled feedback: you
+          cannot observe everything. This leads directly to the exploration versus exploitation trade-off, handled
+          practically with epsilon-greedy strategies.</p>
+
+        <p>The taxonomy splits into model-free and model-based approaches. <b>Policy-based RL</b> learns a function that
+          directly tells the agent what action to take. Deterministic policies always return the same action for a given
+          state. Stochastic policies output probability distributions. <b>Value-based RL</b> learns a value function
+          that maps states to expected discounted returns, dependent on the chosen policy. Q-Learning learns the value
+          of taking a particular action in a given state.</p>
+
+        <p>The frozen lake MDP example was where everything clicked. The pseudocode: start with all zeros, iterate
+          through each state, calculate the reward for every action, update. Simple enough to fit on a slide. Deep
+          enough to actually feel the uncertainty. When you do not know the model at all, you fall back to Monte Carlo
+          methods or temporal difference learning.</p>
+
+        <p><b>Deep Q-Learning</b> generalises across similar states, where one update improves many states at once.
+          Policy gradient approaches optimise the expected return directly.</p>
+
+        <p>For a hot second, I genuinely believed I could navigate a frozen lake using a stochastic policy. I cannot.
+          But the fact that I felt like I could is a testament to how well this was taught.</p></br>
+
+        <h3>The Quiet IBM Note</h3>
+        <div class="speaker">Speaker: Amith Singhee</div>
+
+        <p>A concise but grounding talk on AI at IBM, touching on foundation models trained with self-supervision that
+          can do multiple things well, and <b>CogMol</b> for controlled generation of molecules for drug design.
+          Sometimes the most valuable conference notes are the ones that connect theory to industry, reminding you that
+          all of this has to survive contact with real problems.</p>
+        <p class="postscript">P.S. For a guy who has been in the tech field for a decade, it was quite impressive seeing
+          him answer every question, even the ones that were outside of his domain expertise. His homework must be
+          solid. Or he is just that smart. Either way, solid.</p></br>
+
+        <h3>Hallucinating Biochemistry</h3>
+        <div class="speaker">Speaker: Alisa Khramushin</div>
+
+        <p>This is where the conference shifted from understanding biology to designing it. Khramushin walked through
+          the full arc of computational protein design, starting from classical sequence alignment, PSSMs, and HMMs, and
+          arriving at something that genuinely feels like science fiction.</p>
+
+        <p><b>Inverse protein folding</b> is the core problem: given a desired structure, design a sequence that folds
+          into it. ProtMPNN handles this by letting you control sequence diversity through temperature. Increasing
+          temperature increases diversity. The probability is a simple softmax with temperature scaling. But the
+          critical insight was that sequence recovery does not correlate with in-silico refolding. Optimising for one
+          does not guarantee the other. That is a subtlety you can easily miss.</p>
+
+        <p><b>Top7</b> got a mention as the first fully de novo protein, a milestone worth pausing on. We actually
+          designed a protein from scratch. The current pipeline for function-conditioned design is: conditioning, then
+          backbone generation, then sequence design, then structure prediction. You can encode partial information when
+          you have a desired functional motif, binder, or active site.</p>
+
+        <p>De novo binder design was where the tools started to feel powerful. <b>MaSIF</b> uses surface-based search:
+          extract fingerprints, build a patch database, find complementary patches, seed candidates, and graft with
+          Rosetta to produce binders. The diffusion model approach (backbone generation, sequence optimisation,
+          structure prediction) was cleaner. <b>RFDiffusion</b> handles conformational landscape optimisation.
+          Hallucination methods go even further: no target backbone, just optimise a sequence until the model is
+          confident. <b>BindCraft</b> does exactly that, though creating surface structures remains difficult.</p>
+
+        <p>The <b>metamorphic proteins</b> section was straight out of a sci-fi novel. These are multi-state proteins
+          with two distinct structures, marginal thermostability that allows spontaneous unfolding, and structural
+          dissimilarity between the populated states. Modelling transition feasibility uses a transforming potential
+          (RMSD from the final state) and an unfolding potential that defines a differentiable function to compute the
+          number of contacts within a protein and then minimises them. We are not just predicting structures anymore. We
+          are hallucinating biochemistry.</p></br>
+
+        <h3>Finding the Right Projection</h3>
+        <div class="speaker">Speaker: Jagannath Mondal</div>
+
+        <p>Mondal's talks (he appeared twice across the day) were about the fundamental problem underneath all
+          computational structural biology: how do you represent complex, high-dimensional molecular dynamics data in a
+          way that is actually useful?</p>
+
+        <p>The MD pipeline is deceptively simple: take an initial configuration, define an interaction potential,
+          compute forces, propagate the system over time using Newton's laws, and compute observables. The hard part is
+          finding the projection that best represents ensemble data.</p>
+
+        <p>Dimensionality reduction splits into linear and nonlinear methods. <b>PCA</b> finds linear combinations of
+          input coordinates that maximise variance. <b>Time-lagged PCA</b> is the more interesting variant: the slowest
+          degrees of freedom are those whose autocorrelation functions decay the slowest. On the nonlinear side, you
+          have UMAP, autoencoders, and VAEs.</p>
+
+        <p>The progression from autoencoders to VAEs is clean. An autoencoder learns a compressed representation. A
+          <b>VAE</b> adds structure to the latent space: Z equals mu plus sigma times epsilon, where epsilon is drawn
+          from a distribution. That single modification transforms a compression tool into a generative model.
+        </p>
+
+        <p>His later talk on simulations with AI connected this to diffusion models (noising forward process, denoising
+          reverse process) and causal attention transformers, tying the representation learning to actual generation.
+        </p></br>
+
+        <h3>The Grammar of Nature</h3>
+        <div class="speaker">Speaker: Shruthi Viswanathan</div>
+
+        <p>The closing talk tied the entire conference together in a way that felt almost inevitable. We have spent
+          years treating protein sequences as standard biological data. Treating them as language changes everything.
+        </p>
+
+        <p>Viswanathan's group started the talk from statistical language models that explicitly compute the probability
+          of the next word. The problems are immediate: combinatorial explosion and data sparsity. The Markov assumption
+          simplifies things into N-gram models, but you lose context. That is the fundamental trade-off that
+          transformers were built to solve.</p>
+
+        <p>The mapping from natural language to proteins produces three families of protein language models:
+          encoder-only, decoder-only, and encoder-decoder. The training objectives mirror NLP directly.
+          <b>Autoregressive modelling</b> (given a sequence, predict the next token) is used by ProtGPT2 and ProGen.
+          <b>Masked language modelling</b> (randomly mask some amino acid residues and predict them) is used by ESM.
+          <b>Span corruption</b> (mask a stretch of amino acids) is used by ProtT5.
+        </p>
+
+        <p><b>ESM2</b> is the current powerhouse. Transformer architecture, trained on Uniref50 data, using Rotary
+          Positional Encoding (RoPE) and pre-norm instead of post-norm. These are the same architectural decisions that
+          matter in natural language, applied to biology.</p>
+
+        <p>The question of what pLM embeddings actually encode is genuinely fascinating. Embedding norms quantify the
+          magnitude of vectors in N-dimensional space, and fine-tuning these models for specific tasks means we are
+          learning to read the grammar of amino acids. Nature has a vocabulary. These models are learning to parse it.
+        </p></br>
+
+        <h3>Conclusion</h3>
+
+        <p>If you look closely at the surviving notes, a pattern emerges. Whether it is making language models more
+          efficient through tandem architectures, teaching agents to navigate the minefield of context management,
+          mapping the hidden structure of graphs, designing entirely new proteins through hallucination, or parsing the
+          vocabulary of amino acids, we are all just trying to find the underlying grammar of complex systems.</p>
+
+        <p>The rest is just atmosphere.</p>
+
+        <div class="tenor-gif-embed" data-postid="12146245" data-share-method="host" data-aspect-ratio="1.335"
+          data-width="100%"><a href="https://tenor.com/view/brent-rambo-ok-thumbs-up-nod-gif-12146245">Brent Rambo Ok
+            GIF</a>from <a href="https://tenor.com/search/brent+rambo-gifs">Brent Rambo GIFs</a></div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+      </article>
+    </main>
+
+    <footer>&copy; 2025 Yash Mathur</footer>
+  </div>
+
+  <button class="to-top" id="toTopBtn" aria-label="Back to top">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5m0 0l-6 6m6-6l6 6" />
+    </svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const r = document.documentElement, b = document.getElementById('themeToggle'),
+        s = document.getElementById('ico-sun'), m = document.getElementById('ico-moon'),
+        t = document.getElementById('toTopBtn'),
+        p = window.matchMedia('(prefers-color-scheme:light)').matches;
+      function set(v) {
+        if (v === 'light') { r.classList.remove('dark'); b.setAttribute('aria-pressed', 'true'); s.style.display = 'block'; m.style.display = 'none'; localStorage.setItem('t', 'light') }
+        else { r.classList.add('dark'); b.setAttribute('aria-pressed', 'false'); s.style.display = 'none'; m.style.display = 'block'; localStorage.setItem('t', 'dark') }
+      }
+      const sv = localStorage.getItem('t'); sv ? set(sv) : set(p ? 'light' : 'dark');
+      b.addEventListener('click', () => set(r.classList.contains('dark') ? 'light' : 'dark'));
+      const c = () => { t.classList.toggle('show', window.scrollY > 200) };
+      window.addEventListener('scroll', c, { passive: true });
+      t.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    });
+  </script>
+</body>
+
+</html>

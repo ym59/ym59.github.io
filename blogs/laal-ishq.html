@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Laal Ishq: A Thought Experiment on Love: Yash's Musings</title>
+  <meta name="description"
+    content="A deep dive into Bhansali and Arijit Singh's Laal Ishq — not just a love song, but a philosophical stance on obsession, rasa, and being burned alive by your own emotions." />
+  <link rel="icon" href="../../images/YM.ico" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #fafafa;
+      --text: #4b5563;
+      --heading: #1a1a2e;
+      --muted: #9ca3af;
+      --link: #4a7f96;
+      --warm: #b8854a;
+      --border: rgba(0, 0, 0, 0.08);
+      --max-w: 960px;
+    }
+
+    html.dark {
+      --bg: #0d1017;
+      --text: #9ca3af;
+      --heading: #c8cfd7;
+      --muted: #5c6370;
+      --link: #6aacca;
+      --warm: #d0a06a;
+      --border: rgba(255, 255, 255, 0.06);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 180ms, color 180ms;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      display: block
+    }
+
+    .hdr-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--heading)
+    }
+
+    .hdr-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 1px
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end
+    }
+
+    .nav a,
+    .nav button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      padding: 0 8px;
+      border-radius: 5px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border: 1px solid transparent;
+      background: none;
+      cursor: pointer;
+      transition: color 150ms;
+      font-family: inherit;
+    }
+
+    .nav a:hover,
+    .nav button:hover {
+      color: var(--text);
+      text-decoration: none
+    }
+
+    .nav-sep {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+      margin: 0 2px
+    }
+
+    .post-header {
+      padding: 48px 0 24px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .post-date {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--warm);
+      margin-bottom: 10px;
+    }
+
+    .post-header h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--heading);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .post-content {
+      max-width: 740px;
+      margin: 0 auto;
+      padding-bottom: 48px;
+    }
+
+    .post-content p {
+      margin-top: 16px;
+      text-align: justify;
+      text-align-last: left;
+    }
+
+    .post-content b,
+    .post-content strong {
+      color: var(--heading);
+      font-weight: 500
+    }
+
+    .post-content img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .img-row {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      align-items: center;
+    }
+
+    .img-row img {
+      flex: 1;
+      margin: 0;
+      max-height: 280px;
+      width: auto;
+      object-fit: contain;
+      border: none;
+      border-radius: 0;
+    }
+
+    .postscript {
+      margin-top: 2px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted)
+    }
+
+    .to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 150ms, color 150ms, z-index:100;
+    }
+
+    .to-top.show {
+      opacity: 1
+    }
+
+    .to-top:hover {
+      color: var(--link)
+    }
+
+    @media(max-width:600px) {
+      header {
+        flex-wrap: wrap
+      }
+
+      .nav {
+        width: 100%;
+        margin-top: 8px
+      }
+
+      .img-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .img-row img {
+        max-height: 220px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0s !important
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="../../images/YM.png" alt="YM"></div>
+      <div>
+        <div class="hdr-name">Yash Mathur</div>
+        <div class="hdr-tag">PhD Scholar, Computational Biologist, AI Enthusiast</div>
+      </div>
+      <nav class="nav" aria-label="Links">
+        <a href="../nav.html" title="All Posts">Musings</a>
+        <span class="nav-sep"></span>
+        <a href="../../index.html" title="Home"><i class="fas fa-arrow-left"></i></a>
+        <span class="nav-sep"></span>
+        <a href="https://www.linkedin.com/in/yash-mathur-b538262a/" target="_blank" rel="noopener noreferrer"
+          title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://orcid.org/0000-0003-2753-0557" target="_blank" rel="noopener noreferrer" title="ORCID"><i
+            class="fab fa-orcid"></i></a>
+        <a href="https://github.com/ym59" target="_blank" rel="noopener noreferrer" title="GitHub"><i
+            class="fab fa-github"></i></a>
+        <a href="mailto:yash185973@st.jmi.ac.in" title="Email"><i class="fas fa-envelope"></i></a>
+        <button id="themeToggle" aria-pressed="true" title="Toggle theme">
+          <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
+          </svg>
+          <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="post-header">
+        <div class="post-date">[May 4, 2023]</div>
+        <h1>Laal Ishq: A Thought Experiment on Love</h1>
+      </div>
+
+      <article class="post-content">
+        <p>"Laal Ishq" sounds like your standard Bollywood romance, right? Wrong. It is not a love song. It is a thought
+          experiment about love.</p>
+
+        <p>Bhansali did not just give us a track, he gave us a mini philosophy of obsession, wrapped in a semi classical
+          thumri. Put this song on with ANC earphones in a dead silent room, maybe some rain in the background (might
+          have to call Indra homie to give some aesthetic vibes). The noise cancellation strips away the world and
+          leaves you alone with that tabla and vocal core. You can hear every breath, every microtone, and every ounce
+          of pain. It is an insane, almost spiritual experience.</p>
+        <p class="postscript">P.S. I get that ANC also then cancels the rain, but what ANCs are that amazing at
+          cancelling noise right? right?</p>
+
+        <img src="../../images/Drake_meme.jpg" alt="meme">
+
+        <p>The song feels steeped in <b>Raag Jog</b>, which gives it that late-night atmosphere of ache, stillness, and
+          unresolved feeling. What makes it so affecting is the way it seems to hover between hope and heartbreak, never
+          settling fully into either. The melody has a softness and a shadow at the same time, so it feels intimate but
+          also strangely distant, like a memory you cannot quite hold onto. Bhansali deepens that feeling with a
+          <b>Poorab ang thumri</b> sensibility, which lends the piece a very human, almost conversational emotional
+          quality. The singing does not just move through the notes; it lingers on them, bends around them, and lets
+          them breathe. Those tiny decorative turns in the voice, the delicate flourishes and almost pleading rises,
+          make the performance feel deeply expressive and lived-in. There is a sense of yearning in every phrase, as
+          though the voice is not merely singing the song but reaching toward something just out of grasp. It is the
+          kind of music that does not demand attention so much as draw you inward, slowly and irresistibly, until you
+          are fully inside its mood.</p>
+
+        <p>And who delivers that cry? <b>Arijit Singh</b>. We really need to appreciate the sheer restraint and agony he
+          brings here. He does not just belt the notes. He bleeds through them. He holds back, letting the grief simmer,
+          making the eventual vocal release feel like a dam breaking.</p>
+
+        <p>The minimal instrumentation mirrors obsessive love. When you are obsessing, the world shrinks. The repetition
+          traps you in that loop. Lyrically, the track constantly pairs <b>Laal</b>, meaning passion and redness and
+          heat, with <b>Malaal</b>, meaning regret and melancholy and heaviness. It turns love into a wildly unstable
+          mix. It is not just fire; it is fire that leaves suffocating ash.</p>
+
+        <img src="../../images/pam_meme.jpg" alt="meme">
+
+        <p>This makes Laal Ishq almost a category error in Hindi film romance. It refuses to be just a feeling. It
+          treats love as a cosmic, destructive force, a rasa where the aesthetic flavor is literally getting burned at
+          the stake of your own emotions. Even those few seconds of silence in the track say more than the vocals. It is
+          the gasp before the flame hits again.</p>
+
+        <p>Shoutout to Bhansali and Arijit for making a banger that doubles as an existential crisis. Based thumri.</p>
+      </article>
+    </main>
+
+    <footer>&copy; 2025 Yash Mathur</footer>
+  </div>
+
+  <button class="to-top" id="toTopBtn" aria-label="Back to top">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5m0 0l-6 6m6-6l6 6" />
+    </svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const r = document.documentElement, b = document.getElementById('themeToggle'),
+        s = document.getElementById('ico-sun'), m = document.getElementById('ico-moon'),
+        t = document.getElementById('toTopBtn'),
+        p = window.matchMedia('(prefers-color-scheme:light)').matches;
+      function set(v) {
+        if (v === 'light') { r.classList.remove('dark'); b.setAttribute('aria-pressed', 'true'); s.style.display = 'block'; m.style.display = 'none'; localStorage.setItem('t', 'light') }
+        else { r.classList.add('dark'); b.setAttribute('aria-pressed', 'false'); s.style.display = 'none'; m.style.display = 'block'; localStorage.setItem('t', 'dark') }
+      }
+      const sv = localStorage.getItem('t'); sv ? set(sv) : set(p ? 'light' : 'dark');
+      b.addEventListener('click', () => set(r.classList.contains('dark') ? 'light' : 'dark'));
+      const c = () => { t.classList.toggle('show', window.scrollY > 200) };
+      window.addEventListener('scroll', c, { passive: true });
+      t.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    });
+  </script>
+</body>
+
+</html>
